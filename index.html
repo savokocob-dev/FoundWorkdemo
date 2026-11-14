@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoundWork – หางานที่ใช่ ได้งานที่ชอบ</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1F5C;--navy-2:#13307F;--blue:#1A5CF0;--blue-2:#4A86F7;--blue-l:#EAF1FF;
+  --yellow:#F9B233;--yellow-l:#FFF5E0;--bg:#F5F7FC;--card:#fff;--text:#1B2340;--muted:#6B7590;
+  --line:#E3E8F2;--green:#16A34A;--green-l:#E7F7EE;--red:#DC2626;--red-l:#FDECEC;--purple:#7C3AED;--purple-l:#F1EAFE;
+  --r:16px;--shadow:0 6px 24px rgba(10,31,92,.08)
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Prompt',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+button,input,select,textarea{font-family:inherit;font-size:15px}
+a{color:var(--blue);text-decoration:none}
+.hidden{display:none!important}
+.muted{color:var(--muted);font-size:14px}
+.link{color:var(--navy);cursor:pointer;font-weight:500}.link:hover{color:var(--blue);text-decoration:underline}
+
+/* Buttons & forms */
+.btn{border:none;border-radius:10px;padding:10px 18px;font-weight:500;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:6px;justify-content:center;white-space:nowrap}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:var(--navy-2)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-outline{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}.btn-outline:hover{background:var(--blue-l)}
+.btn-ghost{background:transparent;color:var(--muted)}.btn-ghost:hover{color:var(--navy);background:var(--blue-l)}
+.btn-green{background:var(--green);color:#fff}
+.btn-red{background:#fff;color:var(--red);border:1.5px solid #F3B4B4}.btn-red:hover{background:var(--red-l)}
+.btn-yellow{background:var(--yellow);color:var(--navy)}
+.btn-sm{padding:7px 12px;font-size:14px}
+.btn-block{width:100%}
+input,select,textarea{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--text);outline:none;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,92,240,.12)}
+input:disabled{background:var(--bg);color:var(--muted)}
+textarea{resize:vertical;min-height:110px}
+label{font-size:14px;font-weight:500;color:var(--navy);display:block;margin-bottom:6px}
+.field{margin-bottom:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.check{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text);cursor:pointer;margin:0}
+.check input{width:18px;height:18px;accent-color:var(--blue)}
+
+/* Logo */
+.brand{display:flex;align-items:center;gap:10px;cursor:pointer}
+.wordmark{display:flex;flex-direction:column;line-height:1.05}
+.wm{font-weight:700;font-size:24px;letter-spacing:-.5px}
+.wm .f{color:var(--navy)}.wm .w{color:var(--blue)}
+.wordmark small{font-size:11px;color:var(--muted);letter-spacing:.5px}
+.brand-big{flex-direction:column;text-align:center;gap:6px;cursor:default}
+.brand-big .wm{font-size:46px}
+.brand-big .tagline{display:flex;align-items:center;gap:12px;color:#4A5372;font-size:16px;letter-spacing:1px}
+.brand-big .tagline:before,.brand-big .tagline:after{content:"";width:60px;height:1.5px;background:#4A5372;opacity:.7}
+
+/* Login */
+#view-login{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr}
+.login-brand{background:linear-gradient(160deg,#fff 0%,var(--blue-l) 60%,#DCE7FF 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;position:relative;overflow:hidden}
+.login-brand:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(249,178,51,.18),transparent 70%);right:-120px;bottom:-120px}
+.benefits{margin-top:30px;display:grid;gap:12px;max-width:420px;width:100%;position:relative;z-index:1}
+.benefit{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:var(--shadow)}
+.benefit .ic{flex:0 0 38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--blue-l);color:var(--blue);font-weight:700}
+.benefit:nth-child(2) .ic{background:var(--yellow-l);color:#B7791F}
+.benefit:nth-child(3) .ic{background:var(--green-l);color:var(--green)}
+.benefit:nth-child(4) .ic{background:var(--purple-l);color:var(--purple)}
+.benefit b{color:var(--navy);display:block;font-weight:600}
+.benefit span{font-size:13px;color:var(--muted)}
+.login-form-wrap{display:flex;align-items:center;justify-content:center;padding:40px 24px;background:#fff}
+.login-card{width:100%;max-width:400px}
+.login-card h2{color:var(--navy);font-size:26px;margin-bottom:4px}
+.tabs{display:flex;background:var(--bg);border-radius:12px;padding:4px;margin:22px 0}
+.tabs button{flex:1;border:none;background:transparent;padding:9px;border-radius:9px;cursor:pointer;color:var(--muted);font-weight:500}
+.tabs button.active{background:#fff;color:var(--navy);box-shadow:0 2px 8px rgba(10,31,92,.1)}
+.role-pick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.role-pick label{border:1.5px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;text-align:center;margin:0;font-weight:500}
+.role-pick input{display:none}
+.role-pick label:has(input:checked){border-color:var(--blue);background:var(--blue-l);color:var(--blue)}
+.divider{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;margin:20px 0 14px}
+.divider:before,.divider:after{content:"";flex:1;height:1px;background:var(--line)}
+.demo-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.err{color:var(--red);font-size:13px;margin-bottom:10px;min-height:18px}
+
+/* Header */
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:16px}
+.nav-links{display:flex;gap:4px}
+.nav-links button{border:none;background:none;padding:9px 14px;border-radius:10px;cursor:pointer;color:var(--muted);font-weight:500;position:relative}
+.nav-links button.active{background:var(--blue-l);color:var(--blue)}
+.nav-links .dot{position:absolute;top:0;right:0;background:var(--yellow);color:var(--navy);font-size:11px;font-weight:700;border-radius:20px;padding:0 6px;line-height:18px}
+.user-box{display:flex;align-items:center;gap:10px}
+.user-box .who{cursor:pointer}
+.avatar{border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:600;flex-shrink:0;background:var(--navy)}
+.user-box .nm{font-size:14px;font-weight:500;color:var(--navy);line-height:1.2}
+.user-box .rl{font-size:12px;color:var(--muted)}
+main{max-width:1200px;margin:auto;padding:24px 20px 60px}
+
+/* Hero / search */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 55%,var(--blue) 100%);border-radius:20px;padding:30px;color:#fff;position:relative;overflow:hidden;margin-bottom:18px}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;border:28px solid rgba(255,255,255,.07)}
+.hero h1{font-size:26px;font-weight:600}
+.hero p{opacity:.85;margin-bottom:18px}
+.hero .hl{color:var(--yellow)}
+.search-bar{display:grid;grid-template-columns:2fr 1.4fr 1fr 1.4fr auto;gap:10px;background:#fff;padding:10px;border-radius:14px;position:relative;z-index:1}
+.search-bar input,.search-bar select{border-color:transparent;background:var(--bg)}
+.cat-chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;margin-bottom:10px}
+.chip{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:22px;padding:6px 14px;cursor:pointer;font-size:14px;color:var(--text);white-space:nowrap}
+.chip small{color:var(--muted)}
+.chip:hover{border-color:var(--blue)}
+.chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip.active small{color:#C9D7F7}
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+.toolbar .left{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.toolbar select{width:auto}
+.count{font-weight:600;color:var(--navy)}
+
+/* Job cards */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line)}
+.job-card{padding:20px;display:flex;flex-direction:column;gap:12px;transition:.2s}
+.job-card:hover{transform:translateY(-2px);border-color:#C9D7F7}
+.jc-top{display:flex;gap:12px;align-items:flex-start}
+.co-logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;flex:0 0 46px}
+.jc-top h3{font-size:17px;color:var(--navy);font-weight:600;line-height:1.35}
+.jc-top .info{flex:1}
+.match{flex:0 0 auto;text-align:center;border-radius:12px;padding:6px 10px;font-size:12px;line-height:1.2}
+.match b{display:block;font-size:17px}
+.m-high{background:var(--green-l);color:var(--green)}
+.m-mid{background:var(--blue-l);color:var(--blue)}
+.m-low{background:var(--bg);color:var(--muted)}
+.badges,.tags{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font-size:12px;padding:3px 10px;border-radius:20px;background:var(--bg);color:var(--muted);font-weight:500}
+.badge.type{background:var(--blue-l);color:var(--blue)}
+.badge.starter{background:var(--yellow-l);color:#9A6200}
+.badge.near{background:var(--green-l);color:var(--green)}
+.tag{font-size:12px;padding:3px 10px;border-radius:8px;border:1px solid var(--line);color:var(--muted)}
+.tag.hit{border-color:#A9C3FA;background:var(--blue-l);color:var(--blue)}
+.desc{font-size:14px;color:#4A5372;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.jc-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px dashed var(--line);padding-top:12px;margin-top:auto;flex-wrap:wrap}
+.meta{display:flex;gap:14px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.meta .money{color:var(--navy);font-weight:600}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.empty{text-align:center;padding:50px 20px;color:var(--muted)}
+.empty b{display:block;color:var(--navy);font-size:18px;margin-bottom:4px}
+
+/* KPIs & lists */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.kpi{padding:18px;display:flex;flex-direction:column;gap:2px}
+.kpi span{font-size:13px;color:var(--muted)}
+.kpi b{font-size:26px;color:var(--navy);font-weight:600}
+.kpi:nth-child(2) b{color:var(--blue)}.kpi:nth-child(3) b{color:#B7791F}.kpi:nth-child(4) b{color:var(--green)}
+.page-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:12px;flex-wrap:wrap}
+.page-head h2{color:var(--navy);font-size:24px}
+.subtabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.subtabs button{border:1.5px solid var(--line);background:#fff;padding:7px 14px;border-radius:20px;cursor:pointer;color:var(--muted);font-size:14px}
+.subtabs button.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.list{display:flex;flex-direction:column;gap:14px}
+.app-card{padding:20px;display:flex;flex-direction:column;gap:14px}
+.app-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.app-head h3{font-size:17px;color:var(--navy);font-weight:600}
+.status{font-size:13px;padding:4px 12px;border-radius:20px;font-weight:500;white-space:nowrap}
+.st-yellow{background:var(--yellow-l);color:#9A6200}.st-blue{background:var(--blue-l);color:var(--blue)}
+.st-navy{background:#E3E8F6;color:var(--navy)}.st-purple{background:var(--purple-l);color:var(--purple)}
+.st-green{background:var(--green-l);color:var(--green)}.st-red{background:var(--red-l);color:var(--red)}
+.st-gray{background:#EEF0F4;color:#6B7280}
+.stepper{display:flex;align-items:center}
+.step{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--muted);width:80px;text-align:center}
+.step i{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);background:#fff;display:grid;place-items:center;font-style:normal;font-weight:600;font-size:13px}
+.step.done i{background:var(--blue);border-color:var(--blue);color:#fff}
+.step.now i{border-color:var(--yellow);background:var(--yellow);color:var(--navy)}
+.step.now{color:var(--navy);font-weight:600}
+.bar{flex:1;height:3px;background:var(--line);margin-bottom:20px;border-radius:3px}
+.bar.done{background:var(--blue)}
+.offer-box{background:linear-gradient(90deg,var(--yellow-l),#fff);border:1px solid #F7D894;border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.offer-box b{color:var(--navy)}
+.note{background:var(--bg);border-radius:10px;padding:10px 14px;font-size:14px;color:#4A5372;word-break:break-word}
+
+/* Employer */
+.job-block{overflow:hidden}
+.job-block-head{padding:18px 20px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line);background:linear-gradient(90deg,#fff,var(--blue-l))}
+.job-block-head h3{color:var(--navy);font-size:17px}
+.applicant{padding:16px 20px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;border-bottom:1px solid var(--line);align-items:start}
+.applicant:last-child{border-bottom:none}
+.applicant .msg{font-size:14px;color:#4A5372;margin-top:6px}
+.applicant .right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.no-app{padding:18px 20px;color:var(--muted);font-size:14px;text-align:center}
+#postBox{padding:22px;margin-bottom:20px}
+#postBox h3{color:var(--navy);margin-bottom:14px}
+
+/* Chat */
+.chat-wrap{display:grid;grid-template-columns:330px 1fr;height:calc(100vh - 170px);min-height:500px;overflow:hidden}
+.chat-list{border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.chat-list-head{padding:16px;border-bottom:1px solid var(--line)}
+.chat-list-head h3{color:var(--navy);margin-bottom:8px}
+.conv-items{overflow-y:auto;flex:1}
+.conv{display:flex;gap:10px;padding:12px 16px;cursor:pointer;border-bottom:1px solid var(--line);transition:.15s}
+.conv:hover{background:#F8FAFF}
+.conv.active{background:var(--blue-l)}
+.conv .cbody{flex:1;min-width:0}
+.conv .top,.conv .bottom{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.conv .top b{color:var(--navy);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv .t{font-size:11px;color:var(--muted);flex-shrink:0}
+.conv .cjob{font-size:12px;color:var(--blue);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv .prev{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv .prev.strong{color:var(--text);font-weight:600}
+.unread{background:var(--blue);color:#fff;border-radius:20px;font-size:11px;padding:0 7px;line-height:18px;flex-shrink:0}
+.chat-pane{display:flex;flex-direction:column;min-height:0;min-width:0}
+.chat-head{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.chat-head .back{display:none}
+.msgs{flex:1;overflow-y:auto;padding:16px;background:var(--bg);display:flex;flex-direction:column;gap:6px}
+.bubble{max-width:72%;padding:9px 13px;border-radius:16px;font-size:14px;white-space:pre-wrap;word-wrap:break-word}
+.bubble.mine{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:4px}
+.bubble.theirs{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.bubble.sys{box-shadow:inset 0 0 0 2px var(--yellow)}
+.bmeta{font-size:11px;opacity:.75;margin-top:2px;text-align:right;white-space:nowrap}
+.day-sep{align-self:center;font-size:12px;color:var(--muted);background:#E9EDF6;padding:2px 12px;border-radius:20px;margin:8px 0}
+.typing{font-size:13px;color:var(--muted);padding:0 16px;height:24px;line-height:24px;background:var(--bg)}
+.dots{display:inline-flex;gap:3px;vertical-align:middle;margin-right:4px}
+.dots span{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:blink 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.quick{display:flex;gap:6px;padding:8px 12px 0;overflow-x:auto}
+.quick button{flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:16px;padding:4px 12px;font-size:13px;cursor:pointer}
+.quick button:hover{border-color:var(--blue);color:var(--blue)}
+.chat-input{display:flex;gap:8px;padding:10px 12px 12px;align-items:flex-end}
+.chat-input textarea{min-height:44px;max-height:120px;resize:none;padding:10px 14px}
+.chat-empty{flex:1;display:grid;place-items:center;text-align:center;color:var(--muted);padding:30px}
+.chat-empty b{display:block;color:var(--navy);font-size:18px}
+
+/* Profile */
+.prof-card{overflow:hidden}
+.prof-cover{height:130px;background:linear-gradient(120deg,var(--navy),var(--blue));position:relative;overflow:hidden}
+.prof-cover:after{content:"";position:absolute;right:40px;top:-30px;width:140px;height:140px;border-radius:50%;border:18px solid rgba(249,178,51,.55)}
+.prof-main{display:flex;gap:20px;padding:0 24px 20px;align-items:flex-end;flex-wrap:wrap}
+.prof-main .pa{margin-top:-50px;border:5px solid #fff;border-radius:50%;background:#fff;position:relative;z-index:1}
+.prof-main .pinfo{flex:1;min-width:220px;padding-top:10px}
+.prof-main h2{color:var(--navy);font-size:24px;line-height:1.3}
+.prof-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.prof-stats div{padding:14px;text-align:center;border-right:1px solid var(--line);font-size:13px;color:var(--muted)}
+.prof-stats div:last-child{border-right:none}
+.prof-stats b{display:block;font-size:20px;color:var(--navy)}
+.prof-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;margin-top:16px;align-items:start}
+.sec{padding:20px;margin-bottom:16px}
+.sec h4{color:var(--navy);font-size:16px;margin-bottom:10px}
+.exp{border-left:3px solid var(--blue-l);padding:0 0 12px 16px;position:relative}
+.exp:before{content:"";position:absolute;left:-7px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--blue)}
+.exp b{color:var(--navy);font-weight:600}
+.info-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.info-row:last-child{border-bottom:none}
+.info-row span:first-child{color:var(--muted);flex-shrink:0}
+.info-row span:last-child{text-align:right;word-break:break-word}
+.progress{height:10px;background:var(--bg);border-radius:10px;overflow:hidden;margin:8px 0}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--yellow));border-radius:10px}
+.stars{color:var(--yellow);letter-spacing:1px}
+.review{padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.review:last-child{border-bottom:none}
+.star-pick{margin-bottom:12px}
+.star-pick span{font-size:34px;cursor:pointer;color:#D5DAE6;transition:.15s}
+.star-pick span.on{color:var(--yellow)}
+.exp-row{display:grid;grid-template-columns:1.2fr 1.2fr 1fr auto;gap:8px;margin-bottom:8px}
+.photo-edit{display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.sug{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sug button{border:1px dashed #A9C3FA;background:#fff;color:var(--blue);border-radius:8px;padding:2px 10px;font-size:12px;cursor:pointer}
+
+/* Modal & toast */
+.modal-bg{position:fixed;inset:0;background:rgba(10,31,92,.45);display:grid;place-items:center;z-index:100;padding:20px;animation:fade .2s}
+.modal{background:#fff;border-radius:20px;max-width:620px;width:100%;max-height:90vh;overflow:auto;animation:up .25s}
+.modal-head{padding:20px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;position:sticky;top:0;background:#fff;z-index:1}
+.modal-head h3{color:var(--navy);font-size:19px}
+.modal-body{padding:20px 24px}
+.modal-foot{padding:16px 24px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.x{border:none;background:var(--bg);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px;color:var(--muted);flex:0 0 34px}
+.ai-box{background:linear-gradient(90deg,var(--blue-l),#fff);border:1px solid #C9D7F7;border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.ai-box b{color:var(--blue)}
+.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.detail-grid div{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:13px;color:var(--muted)}
+.detail-grid b{display:block;color:var(--navy);font-size:15px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 22px;border-radius:12px;box-shadow:var(--shadow);z-index:200;border-left:5px solid var(--yellow);max-width:90vw;animation:fade .25s}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:20px}
+@keyframes fade{from{opacity:0}}
+@keyframes up{from{opacity:0;transform:translateY(16px)}}
+
+/* Responsive */
+@media(max-width:960px){
+  #view-login{grid-template-columns:1fr}
+  .login-brand{padding:32px 20px}
+  .benefits{display:none}
+  .search-bar{grid-template-columns:1fr 1fr}
+  .search-bar input{grid-column:1/-1}
+  .grid,.prof-grid{grid-template-columns:1fr}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .chat-wrap{grid-template-columns:1fr;height:calc(100vh - 200px)}
+  .chat-wrap.open .chat-list{display:none}
+  .chat-wrap:not(.open) .chat-pane{display:none}
+  .chat-head .back{display:inline-flex}
+}
+@media(max-width:640px){
+  .nav{flex-wrap:wrap}
+  .nav-links{order:3;width:100%}
+  .nav-links button{flex:1;padding:8px 4px;font-size:13px}
+  .user-box .who{display:none}
+  .wordmark small{display:none}
+  .brand-big .wm{font-size:36px}
+  .row,.row3,.detail-grid,.exp-row{grid-template-columns:1fr}
+  .applicant{grid-template-columns:auto 1fr}
+  .applicant .right{grid-column:1/-1;align-items:flex-start}
+  .step{width:56px;font-size:11px}
+  .bubble{max-width:85%}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<section id="view-login" class="hidden">
+  <div class="login-brand">
+    <div class="brand brand-big" id="bigLogo"></div>
+    <div class="benefits">
+      <div class="benefit"><div class="ic">AI</div><div><b>AI จับคู่งานที่ใช่ให้คุณ</b><span>วิเคราะห์ทักษะและจังหวัด แนะนำงานพร้อมคะแนน Match</span></div></div>
+      <div class="benefit"><div class="ic">★</div><div><b>Starter Gig สำหรับมือใหม่</b><span>ไม่มีประสบการณ์ก็เริ่มสร้างรายได้และพอร์ตได้</span></div></div>
+      <div class="benefit"><div class="ic">฿</div><div><b>ปลอดภัยด้วยระบบพักเงิน</b><span>ผู้ว่าจ้างวางเงินไว้ก่อน ได้รับเงินแน่นอนเมื่อส่งงาน</span></div></div>
+      <div class="benefit"><div class="ic">💬</div><div><b>แชตเรียลไทม์ ครอบคลุม 77 จังหวัด</b><span>คุยกับผู้ว่าจ้างได้ทันที มีงานทั้งออนไลน์และใกล้บ้าน</span></div></div>
+    </div>
+  </div>
+  <div class="login-form-wrap">
+    <div class="login-card">
+      <h2 id="authTitle">ยินดีต้อนรับกลับมา</h2>
+      <p class="muted" id="authSub">เข้าสู่ระบบเพื่อหางานที่ใช่ หรือหาคนทำงานที่ชอบ</p>
+      <div class="tabs">
+        <button class="active" data-auth="login">เข้าสู่ระบบ</button>
+        <button data-auth="register">สมัครสมาชิก</button>
+      </div>
+      <form id="loginForm">
+        <div class="field"><label>อีเมล</label><input type="email" id="lEmail" placeholder="you@example.com" required></div>
+        <div class="field"><label>รหัสผ่าน</label><input type="password" id="lPass" placeholder="••••••" required></div>
+        <div class="err" id="lErr"></div>
+        <button class="btn btn-primary btn-block" type="submit">เข้าสู่ระบบ</button>
+        <div class="divider">หรือทดลองใช้งานด้วยบัญชีเดโม</div>
+        <div class="demo-btns">
+          <button type="button" class="btn btn-outline" onclick="demoLogin('freelancer@foundwork.com')">ฟรีแลนซ์ / ผู้หางาน</button>
+          <button type="button" class="btn btn-yellow" onclick="demoLogin('employer@foundwork.com')">ผู้ว่าจ้าง</button>
+        </div>
+      </form>
+      <form id="regForm" class="hidden">
+        <div class="field"><label>ฉันต้องการ</label>
+          <div class="role-pick">
+            <label><input type="radio" name="role" value="freelancer" checked><span>หางาน / รับงาน</span></label>
+            <label><input type="radio" name="role" value="employer"><span>จ้างงาน / หาคน</span></label>
+          </div>
+        </div>
+        <div class="field"><label>ชื่อ-นามสกุล / ชื่อธุรกิจ</label><input id="rName" required></div>
+        <div class="row">
+          <div class="field"><label>อีเมล</label><input type="email" id="rEmail" required></div>
+          <div class="field"><label>จังหวัด</label><select id="rProv" required></select></div>
+        </div>
+        <div class="field"><label>รหัสผ่าน (อย่างน้อย 4 ตัว)</label><input type="password" id="rPass" minlength="4" required></div>
+        <div class="field" id="skillField"><label>ทักษะของคุณ (คั่นด้วย ,)</label><input id="rSkills" placeholder="เช่น Canva, เขียนคอนเทนต์, Excel"></div>
+        <div class="err" id="rErr"></div>
+        <button class="btn btn-primary btn-block" type="submit">สร้างบัญชี</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APP ================= -->
+<div id="app" class="hidden">
+  <header>
+    <div class="nav">
+      <div class="brand" id="smallLogo" onclick="go(home())"></div>
+      <div class="nav-links" id="navLinks"></div>
+      <div class="user-box">
+        <div id="uAvatar" style="cursor:pointer" onclick="viewProfile()"></div>
+        <div class="who" onclick="viewProfile()"><div class="nm" id="uName"></div><div class="rl" id="uRole"></div></div>
+        <button class="btn btn-ghost btn-sm" onclick="logout()">ออกจากระบบ</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="view-jobs" class="view hidden">
+      <div class="hero">
+        <h1 id="heroTitle"></h1>
+        <p id="heroSub"></p>
+        <div class="search-bar">
+          <input id="q" placeholder="ค้นหาตำแหน่ง ทักษะ บริษัท หรือจังหวัด">
+          <select id="fCat"></select>
+          <select id="fType"></select>
+          <select id="fLoc"></select>
+          <button class="btn btn-yellow" onclick="renderJobs()">ค้นหา</button>
+        </div>
+      </div>
+      <div class="cat-chips" id="catChips"></div>
+      <div class="toolbar">
+        <div class="left">
+          <span class="count" id="jobCount"></span>
+          <label class="check"><input type="checkbox" id="fStarter" onchange="renderJobs()"> เฉพาะ Starter Gig (เหมาะกับมือใหม่)</label>
+        </div>
+        <select id="fSort" onchange="renderJobs()"></select>
+      </div>
+      <div class="grid" id="jobList"></div>
+    </section>
+
+    <section id="view-my" class="view hidden">
+      <div class="page-head"><h2>งานของฉัน</h2><button class="btn btn-outline" onclick="go('jobs')">+ หางานเพิ่ม</button></div>
+      <div class="kpis" id="myKpis"></div>
+      <div class="subtabs" id="mySubtabs"></div>
+      <div class="list" id="myList"></div>
+    </section>
+
+    <section id="view-employer" class="view hidden">
+      <div class="page-head"><h2>จัดการงานและผู้สมัคร</h2><button class="btn btn-primary" onclick="togglePost()">+ ลงประกาศงานใหม่</button></div>
+      <form class="card hidden" id="postBox">
+        <h3>ลงประกาศงานใหม่</h3>
+        <div class="field"><label>ชื่องาน</label><input id="pTitle" required placeholder="เช่น ออกแบบเมนูร้านอาหาร 2 หน้า"></div>
+        <div class="row3">
+          <div class="field"><label>หมวดหมู่</label><select id="pCat"></select></div>
+          <div class="field"><label>ประเภทงาน</label><select id="pType"></select></div>
+          <div class="field"><label>พื้นที่ทำงาน</label><select id="pLoc"></select></div>
+        </div>
+        <div class="row3">
+          <div class="field"><label>งบต่ำสุด (บาท)</label><input type="number" id="pMin" min="1" required></div>
+          <div class="field"><label>งบสูงสุด (บาท)</label><input type="number" id="pMax" min="1" required></div>
+          <div class="field"><label>หน่วย</label><select id="pUnit"><option>ต่องาน</option><option>ต่อชั่วโมง</option><option>ต่อวัน</option><option>ต่อชิ้น</option><option>ต่อเดือน</option></select></div>
+        </div>
+        <div class="field"><label>ทักษะที่ต้องการ (คั่นด้วย ,)</label><input id="pTags" placeholder="เช่น Canva, ออกแบบกราฟิก" required></div>
+        <div class="field"><label>รายละเอียดงาน</label><textarea id="pDesc" required></textarea></div>
+        <div class="field"><label class="check"><input type="checkbox" id="pStarter"> เปิดรับมือใหม่ (Starter Gig)</label></div>
+        <div class="actions"><button class="btn btn-primary" type="submit">เผยแพร่ประกาศ</button><button class="btn btn-ghost" type="button" onclick="togglePost()">ยกเลิก</button></div>
+      </form>
+      <div class="kpis" id="empKpis"></div>
+      <div class="list" id="empList"></div>
+    </section>
+
+    <section id="view-chat" class="view hidden">
+      <div class="card chat-wrap" id="chatWrap">
+        <div class="chat-list">
+          <div class="chat-list-head"><h3>ข้อความ</h3><input id="convSearch" placeholder="ค้นหาชื่อ..." oninput="renderConvList()"></div>
+          <div class="conv-items" id="convItems"></div>
+        </div>
+        <div class="chat-pane" id="chatPane"></div>
+      </div>
+      <p class="muted" style="margin-top:10px">💡 ทดสอบแชตเรียลไทม์: เปิดไฟล์นี้อีก 1 แท็บ แท็บหนึ่งเข้าบัญชีฟรีแลนซ์ อีกแท็บเข้าบัญชีผู้ว่าจ้าง แล้วแชตหากัน</p>
+    </section>
+
+    <section id="view-profile" class="view hidden"><div id="profileRoot"></div></section>
+  </main>
+  <footer>© FoundWork Demo — หางานที่ใช่ ได้งานที่ชอบ · <a href="#" onclick="resetDemo();return false">รีเซ็ตข้อมูลเดโม</a></footer>
+</div>
+
+<div id="modalRoot"></div>
+
+<script>
+/* ================= CONSTANTS ================= */
+const KEY='foundwork_demo_v2', SKEY='foundwork_session_v2', ONLINE='ออนไลน์';
+const CAT_GROUPS=[
+ ['ดิจิทัลและครีเอทีฟ',[['กราฟิกและดีไซน์','🎨'],['เขียนและแปล','✍️'],['การตลาดออนไลน์','📣'],['ไอทีและโปรแกรมมิ่ง','💻'],['วิดีโอและแอนิเมชัน','🎬'],['ภาพถ่าย','📷'],['ดนตรีและเสียง','🎵']]],
+ ['ธุรกิจและสำนักงาน',[['ธุรการและคีย์ข้อมูล','🗂️'],['บัญชีและการเงิน','💰'],['ทรัพยากรบุคคล','👥'],['กฎหมาย','⚖️'],['ที่ปรึกษาธุรกิจ','📊'],['อสังหาริมทรัพย์','🏠']]],
+ ['การศึกษา',[['การสอนและติวเตอร์','📚'],['ภาษาต่างประเทศ','🌐']]],
+ ['ขายและบริการ',[['งานขายและบริการลูกค้า','🛍️'],['ค้าปลีกและหน้าร้าน','🏪'],['อาหารและเครื่องดื่ม','🍳'],['โรงแรมและการท่องเที่ยว','🏨'],['งานอีเวนต์และพิธีกร','🎤']]],
+ ['ช่างและแรงงาน',[['ช่างและซ่อมบำรุง','🔧'],['ก่อสร้างและตกแต่ง','🏗️'],['ขนส่งและเดลิเวอรี','🛵'],['คลังสินค้าและโลจิสติกส์','📦'],['ทำความสะอาดและแม่บ้าน','🧹'],['วิศวกรรมและการผลิต','⚙️']]],
+ ['สุขภาพและการดูแล',[['ดูแลผู้สูงอายุและเด็ก','🤝'],['สุขภาพและความงาม','💆'],['ฟิตเนสและกีฬา','🏋️'],['สัตว์เลี้ยง','🐾']]],
+ ['เกษตรและงานฝีมือ',[['เกษตรกรรม','🌾'],['งานฝีมือและหัตถกรรม','🧶'],['แฟชั่นและตัดเย็บ','👗']]]
+];
+const CATS=CAT_GROUPS.flatMap(g=>g[1].map(c=>c[0]));
+const CAT_ICON=Object.fromEntries(CAT_GROUPS.flatMap(g=>g[1]));
+const TYPES=['ฟรีแลนซ์','พาร์ทไทม์','งานประจำ','งานรายวัน','ฝึกงาน'];
+const REGIONS=[
+ ['ภาคกลาง',['กรุงเทพมหานคร','กำแพงเพชร','ชัยนาท','นครนายก','นครปฐม','นครสวรรค์','นนทบุรี','ปทุมธานี','พระนครศรีอยุธยา','พิจิตร','พิษณุโลก','เพชรบูรณ์','ลพบุรี','สมุทรปราการ','สมุทรสงคราม','สมุทรสาคร','สิงห์บุรี','สุโขทัย','สุพรรณบุรี','สระบุรี','อ่างทอง','อุทัยธานี']],
+ ['ภาคเหนือ',['เชียงใหม่','เชียงราย','น่าน','พะเยา','แพร่','แม่ฮ่องสอน','ลำปาง','ลำพูน','อุตรดิตถ์']],
+ ['ภาคตะวันออกเฉียงเหนือ',['กาฬสินธุ์','ขอนแก่น','ชัยภูมิ','นครพนม','นครราชสีมา','บึงกาฬ','บุรีรัมย์','มหาสารคาม','มุกดาหาร','ยโสธร','ร้อยเอ็ด','เลย','ศรีสะเกษ','สกลนคร','สุรินทร์','หนองคาย','หนองบัวลำภู','อำนาจเจริญ','อุดรธานี','อุบลราชธานี']],
+ ['ภาคตะวันออก',['จันทบุรี','ฉะเชิงเทรา','ชลบุรี','ตราด','ปราจีนบุรี','ระยอง','สระแก้ว']],
+ ['ภาคตะวันตก',['กาญจนบุรี','ตาก','ประจวบคีรีขันธ์','เพชรบุรี','ราชบุรี']],
+ ['ภาคใต้',['กระบี่','ชุมพร','ตรัง','นครศรีธรรมราช','นราธิวาส','ปัตตานี','พังงา','พัทลุง','ภูเก็ต','ยะลา','ระนอง','สงขลา','สตูล','สุราษฎร์ธานี']]
+];
+const REGION_OF=Object.fromEntries(REGIONS.flatMap(([r,l])=>l.map(p=>[p,r])));
+const PROV_COUNT=REGIONS.reduce((s,r)=>s+r[1].length,0); // 77
+const AVAIL=['เต็มเวลา','พาร์ทไทม์ (วันธรรมดา)','ตอนเย็นหลังเลิกงาน','เสาร์-อาทิตย์','ตอนเย็นและเสาร์-อาทิตย์'];
+const daysAgo=n=>new Date(Date.now()-n*864e5).toISOString();
+const minsAgo=m=>new Date(Date.now()-m*6e4).toISOString();
+function cid(a,b){return 'c_'+[a,b].sort().join('__')}
+
+/* ================= SEED DATA ================= */
+function seed(){
+ const users=[
+  {id:'u1',role:'freelancer',name:'สมชาย ใจดี',email:'freelancer@foundwork.com',password:'1234',title:'นักออกแบบกราฟิก / คอนเทนต์ครีเอเตอร์',province:'กรุงเทพมหานคร',phone:'081-234-5678',
+   bio:'พนักงานประจำที่รับงานออกแบบช่วงเย็นและวันหยุด ถนัดงานโซเชียลมีเดียสำหรับร้านอาหารและคาเฟ่ ส่งงานตรงเวลา สื่อสารง่าย',
+   skills:['ออกแบบกราฟิก','Canva','Photoshop','Illustrator','เขียนคอนเทนต์','Social Media'],rate:400,availability:'ตอนเย็นและเสาร์-อาทิตย์',
+   experience:[{role:'กราฟิกดีไซเนอร์ (ฟรีแลนซ์)',org:'ร้านกาแฟและร้านอาหาร 5 แห่ง',period:'2566 - ปัจจุบัน'},{role:'เจ้าหน้าที่ธุรการและสื่อสารองค์กร',org:'บริษัท เอบีซี จำกัด',period:'2563 - ปัจจุบัน'}],
+   education:'ปริญญาตรี นิเทศศาสตร์',languages:'ไทย, อังกฤษ (สื่อสารได้)',links:['https://behance.net/somchai'],joined:daysAgo(120)},
+  {id:'u2',role:'employer',name:'บ้านขนม Bakery',email:'employer@foundwork.com',password:'1234',industry:'อาหารและเครื่องดื่ม',province:'กรุงเทพมหานคร',phone:'02-123-4567',website:'https://bankanom.example.com',size:'1-10 คน',
+   bio:'ร้านเบเกอรี่โฮมเมดย่านอารีย์ ขายทั้งหน้าร้านและออนไลน์ กำลังขยายช่องทางโซเชียลมีเดีย มองหาฟรีแลนซ์ที่ทำงานร่วมกันระยะยาว',joined:daysAgo(200)},
+  {id:'u3',bot:true,female:true,role:'freelancer',name:'นภา ศรีสุข',email:'napa@example.com',password:'x',title:'ผู้ช่วยบัญชี / คีย์ข้อมูล',province:'นนทบุรี',phone:'089-111-2222',
+   bio:'มีประสบการณ์งานบัญชี 3 ปี ตอนนี้กำลังหางานใหม่ ถนัด Excel และงานเอกสาร ละเอียด รอบคอบ',skills:['Excel','บัญชี','คีย์ข้อมูล'],rate:180,availability:'เต็มเวลา',
+   experience:[{role:'เจ้าหน้าที่บัญชี',org:'บริษัทค้าส่งวัสดุก่อสร้าง',period:'2564 - 2567'}],education:'ปวส. การบัญชี',languages:'ไทย',links:[],joined:daysAgo(40)},
+  {id:'u4',bot:true,role:'freelancer',name:'ธนพล แก้วมณี',email:'tanapol@example.com',password:'x',title:'ช่างภาพสินค้าและอาหาร',province:'กรุงเทพมหานคร',phone:'086-333-4444',
+   bio:'ช่างภาพสินค้าและอาหาร 4 ปี มีอุปกรณ์ไฟสตูดิโอพร้อม',skills:['ถ่ายภาพ','Photoshop','Lightroom'],rate:600,availability:'เต็มเวลา',
+   experience:[{role:'ช่างภาพอิสระ',org:'แบรนด์อาหารและคาเฟ่',period:'2564 - ปัจจุบัน'}],education:'ปริญญาตรี ศิลปกรรม',languages:'ไทย, อังกฤษ',links:['https://example.com/tanapol'],joined:daysAgo(300)}
+ ];
+ const J=(id,company,title,category,type,location,min,max,unit,tags,starter,d,desc)=>({id,company,title,category,type,location,min,max,unit,tags,starter,posted:daysAgo(d),status:'open',desc});
+ const jobs=[
+  J('j1','บ้านขนม Bakery','ออกแบบโพสต์ Facebook 10 ชิ้น สำหรับร้านเบเกอรี่','กราฟิกและดีไซน์','ฟรีแลนซ์',ONLINE,1500,2500,'ต่องาน',['ออกแบบกราฟิก','Canva','Social Media'],true,2,'ต้องการนักออกแบบทำโพสต์โปรโมชันเมนูใหม่ 10 ชิ้น โทนสีพาสเทล มีรูปสินค้าให้ แก้ไขได้ 2 ครั้ง ส่งงานภายใน 7 วัน'),
+  J('j2','บ้านขนม Bakery','คีย์ข้อมูลสต๊อกสินค้าลง Excel','ธุรการและคีย์ข้อมูล','พาร์ทไทม์',ONLINE,150,200,'ต่อชั่วโมง',['Excel','คีย์ข้อมูล'],true,1,'บันทึกข้อมูลวัตถุดิบและสินค้าประมาณ 600 รายการจากใบเสร็จลงไฟล์ Excel ทำจากที่บ้านได้ ประมาณ 10 ชั่วโมง'),
+  J('j11','บ้านขนม Bakery','ถ่ายภาพสินค้าเบเกอรี่ 30 รายการ','ภาพถ่าย','ฟรีแลนซ์','กรุงเทพมหานคร',3000,5000,'ต่องาน',['ถ่ายภาพ','Photoshop'],false,4,'ถ่ายภาพสินค้าพื้นหลังขาวและภาพบรรยากาศสำหรับร้านออนไลน์ พร้อมรีทัชเบื้องต้น ถ่ายที่ร้านย่านอารีย์'),
+  J('j3','HealthyMe Co.','เขียนบทความ SEO เรื่องสุขภาพ 5 บทความ','เขียนและแปล','ฟรีแลนซ์',ONLINE,2000,3500,'ต่องาน',['เขียนคอนเทนต์','SEO'],false,3,'บทความละ 1,000–1,200 คำ หัวข้อการดูแลสุขภาพวัยทำงาน มี Keyword ให้ ต้องเขียนเองทั้งหมด'),
+  J('j4','ShopDee Online','แอดมินเพจตอบแชตลูกค้า (18:00–22:00)','งานขายและบริการลูกค้า','พาร์ทไทม์',ONLINE,8000,12000,'ต่อเดือน',['Social Media','บริการลูกค้า'],true,0,'ตอบแชต Facebook และ LINE OA สรุปออเดอร์ลงระบบ เหมาะกับพนักงานประจำที่ต้องการรายได้เสริม มีเทรนนิ่งให้'),
+  J('j5','Siam Craft','พัฒนาเว็บไซต์ร้านค้าด้วย WordPress','ไอทีและโปรแกรมมิ่ง','ฟรีแลนซ์',ONLINE,8000,15000,'ต่องาน',['WordPress','HTML/CSS','WooCommerce'],false,5,'สร้างเว็บไซต์ขายงานหัตถกรรม 6 หน้า พร้อมตะกร้าสินค้าและชำระเงินผ่าน PromptPay'),
+  J('j6','Fit&Fun Studio','ตัดต่อวิดีโอ TikTok 8 คลิป','วิดีโอและแอนิเมชัน','ฟรีแลนซ์',ONLINE,2400,4000,'ต่องาน',['ตัดต่อวิดีโอ','CapCut','Social Media'],true,1,'ตัดต่อคลิปออกกำลังกาย 30–60 วินาที ใส่ซับไตเติล เพลง และเอฟเฟกต์ มีฟุตเทจให้ครบ'),
+  J('j7','Green Leaf Co.','เจ้าหน้าที่การตลาดออนไลน์','การตลาดออนไลน์','งานประจำ','กรุงเทพมหานคร',18000,25000,'ต่อเดือน',['Social Media','Facebook Ads','เขียนคอนเทนต์'],false,6,'วางแผนคอนเทนต์ ยิงโฆษณา และวิเคราะห์ผล ประสบการณ์ 1 ปีขึ้นไป หรือจบใหม่ที่มีพอร์ตชัดเจน'),
+  J('j8','Global Trade Ltd.','แปลเอกสารอังกฤษ-ไทย 20 หน้า','เขียนและแปล','ฟรีแลนซ์',ONLINE,3000,5000,'ต่องาน',['แปลภาษา','ภาษาอังกฤษ'],false,2,'แปลคู่มือสินค้าและเอกสารการตลาด ภาษาเข้าใจง่าย ส่งภายใน 5 วัน'),
+  J('j9','Café Moon','ออกแบบโลโก้และนามบัตรร้านกาแฟ','กราฟิกและดีไซน์','ฟรีแลนซ์','เชียงใหม่',2500,4500,'ต่องาน',['ออกแบบกราฟิก','Illustrator','Photoshop'],false,9,'ออกแบบโลโก้ 3 แบบให้เลือก พร้อมนามบัตร สไตล์มินิมอล ส่งไฟล์ AI/PNG'),
+  J('j10','บัญชีดี Accounting','ผู้ช่วยบัญชี (Part-time)','บัญชีและการเงิน','พาร์ทไทม์','นนทบุรี',9000,12000,'ต่อเดือน',['บัญชี','Excel'],true,3,'ช่วยบันทึกบัญชี จัดเอกสารลูกค้า สัปดาห์ละ 3 วัน นักศึกษาบัญชีปีสุดท้ายสมัครได้'),
+  J('j12','ครูแนน Tutor','ติวเตอร์คณิตศาสตร์ ม.ต้น (เสาร์-อาทิตย์)','การสอนและติวเตอร์','พาร์ทไทม์','ขอนแก่น',250,350,'ต่อชั่วโมง',['คณิตศาสตร์','การสอน'],true,2,'สอนกลุ่มเล็ก 3–5 คน ที่สถาบันในตัวเมืองขอนแก่น มีเอกสารการสอนให้ เหมาะกับนักศึกษาและครูจบใหม่'),
+  J('j13','Andaman Resort','พนักงานต้อนรับชั่วคราว ช่วงไฮซีซัน','โรงแรมและการท่องเที่ยว','งานรายวัน','ภูเก็ต',600,800,'ต่อวัน',['ภาษาอังกฤษ','บริการลูกค้า'],true,1,'ต้อนรับแขก เช็กอิน-เช็กเอาต์ สื่อสารภาษาอังกฤษได้ มีที่พักและอาหารให้'),
+  J('j14','FixHome Service','ช่างล้างแอร์ รับงานรายเครื่อง','ช่างและซ่อมบำรุง','ฟรีแลนซ์','ชลบุรี',350,500,'ต่องาน',['ช่างแอร์','งานช่าง'],false,3,'รับงานล้างแอร์บ้านและคอนโดในพื้นที่ชลบุรี พัทยา มีงานต่อเนื่อง ต้องมีเครื่องมือของตัวเอง'),
+  J('j15','Happy Care','ผู้ดูแลผู้สูงอายุ (ประจำบ้าน)','ดูแลผู้สูงอายุและเด็ก','งานประจำ','นครราชสีมา',15000,18000,'ต่อเดือน',['ดูแลผู้สูงอายุ','ปฐมพยาบาล'],false,4,'ดูแลผู้สูงอายุ 1 ท่าน ช่วยเรื่องอาหาร ยา และการทำกายภาพเบื้องต้น มีวันหยุดสัปดาห์ละ 1 วัน'),
+  J('j16','สวนทุเรียนลุงชัย','ผู้ช่วยเก็บและคัดทุเรียน ฤดูเก็บเกี่ยว','เกษตรกรรม','งานรายวัน','จันทบุรี',450,600,'ต่อวัน',['งานเกษตร','คัดแยกสินค้า'],true,2,'ช่วยเก็บ คัดเกรด และแพ็กทุเรียนส่งล้ง ช่วงเดือนพฤษภาคม–มิถุนายน มีอาหารกลางวันให้'),
+  J('j17','FastBox Logistics','ไรเดอร์ส่งพัสดุในเมืองหาดใหญ่','ขนส่งและเดลิเวอรี','พาร์ทไทม์','สงขลา',12,18,'ต่อชิ้น',['ขับขี่มอเตอร์ไซค์','ส่งพัสดุ'],true,0,'ส่งพัสดุในเขตหาดใหญ่ เลือกรอบเวลาเองได้ ต้องมีรถจักรยานยนต์และใบขับขี่'),
+  J('j18','Wedding Day Studio','พิธีกรและผู้ช่วยงานแต่งงาน','งานอีเวนต์และพิธีกร','ฟรีแลนซ์','อุดรธานี',2000,4000,'ต่องาน',['พิธีกร','จัดงานอีเวนต์'],false,5,'ดำเนินรายการงานแต่งงานช่วงเย็น และช่วยประสานงานหน้างาน มีบทให้'),
+  J('j19','Clean & Clear','แม่บ้านทำความสะอาดคอนโด รายครั้ง','ทำความสะอาดและแม่บ้าน','ฟรีแลนซ์','ปทุมธานี',500,800,'ต่องาน',['ทำความสะอาด'],true,1,'ทำความสะอาดห้องคอนโดย่านรังสิต ครั้งละ 3–4 ชั่วโมง มีอุปกรณ์ให้ เลือกวันเวลาได้'),
+  J('j20','ครัวคุณยาย','ผู้ช่วยครัวร้านอาหารเหนือ','อาหารและเครื่องดื่ม','พาร์ทไทม์','เชียงราย',400,500,'ต่อวัน',['ทำอาหาร','บริการลูกค้า'],true,2,'ช่วยเตรียมวัตถุดิบและล้างจาน ช่วงเที่ยงถึงเย็น ไม่ต้องมีประสบการณ์ สอนงานให้'),
+  J('j21','Lanna Textile','ช่างเย็บผ้าทอมือ งานส่งออก','แฟชั่นและตัดเย็บ','ฟรีแลนซ์','ลำพูน',80,150,'ต่อชิ้น',['ตัดเย็บ','งานผ้า'],false,6,'เย็บกระเป๋าและผ้าคลุมไหล่จากผ้าทอมือ รับงานไปทำที่บ้านได้ มีจักรให้ยืม'),
+  J('j22','DataSoft Thailand','นักพัฒนา Python (Remote)','ไอทีและโปรแกรมมิ่ง','งานประจำ',ONLINE,35000,55000,'ต่อเดือน',['Python','SQL','API'],false,3,'พัฒนา API และระบบประมวลผลข้อมูล ทำงานจากที่ไหนก็ได้ในประเทศไทย'),
+  J('j23','PetJoy','พี่เลี้ยงสุนัข พาเดินเล่นเช้า-เย็น','สัตว์เลี้ยง','พาร์ทไทม์','นครปฐม',200,300,'ต่อวัน',['ดูแลสัตว์เลี้ยง'],true,1,'พาสุนัข 2 ตัวเดินเล่นวันละ 2 รอบ ในหมู่บ้านย่านศาลายา เหมาะกับนักศึกษา'),
+  J('j24','Mind Studio','ตัดต่อเสียง Podcast 4 ตอน','ดนตรีและเสียง','ฟรีแลนซ์',ONLINE,2000,3200,'ต่องาน',['ตัดต่อเสียง','Audacity'],true,2,'ตัดต่อเสียงพอดแคสต์ตอนละ 40 นาที ลดเสียงรบกวน ใส่ดนตรีเปิด-ปิด')
+ ];
+ const emp={'บ้านขนม Bakery':'u2'};let n=1;
+ jobs.forEach(j=>{
+  if(!emp[j.company]){const id='e'+n++;emp[j.company]=id;
+   users.push({id,bot:true,female:true,role:'employer',name:j.company,email:id+'@example.com',password:'x',industry:j.category,
+    province:j.location===ONLINE?'กรุงเทพมหานคร':j.location,phone:'02-000-00'+String(n).padStart(2,'0'),website:'',size:'11-50 คน',
+    bio:`${j.company} ธุรกิจด้าน${j.category} ใช้ FoundWork หาคนทำงานที่ไว้ใจได้`,joined:daysAgo(60+n)})}
+  j.employerId=emp[j.company];
+ });
+ const H=emp['HealthyMe Co.'];
+ return{users,jobs,
+  apps:[
+   {id:'a1',jobId:'j1',userId:'u1',message:'สวัสดีครับ ผมถนัดออกแบบโพสต์ด้วย Canva และ Photoshop เคยทำให้ร้านกาแฟ 3 ร้าน ยินดีปรับโทนตามแบรนด์ครับ',price:2000,days:6,portfolio:'https://behance.net/somchai',status:'offered',created:daysAgo(1)},
+   {id:'a2',jobId:'j2',userId:'u3',message:'ดิฉันคีย์ข้อมูลได้เร็วและแม่นยำ ใช้ Excel คล่อง เคยทำสต๊อกให้ร้านค้าส่งค่ะ',price:170,days:3,portfolio:'',status:'pending',created:daysAgo(0)},
+   {id:'a3',jobId:'j3',userId:'u1',message:'ผมเขียนคอนเทนต์สุขภาพให้เพจมาแล้ว 1 ปี เข้าใจหลัก SEO เบื้องต้นครับ',price:3000,days:7,portfolio:'',status:'pending',created:daysAgo(2)},
+   {id:'a4',jobId:'j9',userId:'u1',message:'ยินดีออกแบบโลโก้สไตล์มินิมอลครับ',price:3500,days:5,portfolio:'',status:'completed',created:daysAgo(8),deliverable:'https://drive.google.com/demo-logo',
+    review:{rating:5,comment:'งานสวยมาก ตรงโจทย์ ส่งก่อนกำหนด สื่อสารง่าย แนะนำเลยค่ะ',by:emp['Café Moon'],at:daysAgo(3)}},
+   {id:'a5',jobId:'j11',userId:'u4',message:'ถ่ายภาพสินค้าอาหารมา 4 ปี มีอุปกรณ์ไฟครบ ส่งงานภายใน 3 วันหลังถ่ายครับ',price:4500,days:4,portfolio:'https://example.com/tanapol',status:'accepted',created:daysAgo(3)}
+  ],
+  convs:[
+   {id:cid('u1','u2'),a:'u2',b:'u1',jobId:'j1',updated:minsAgo(35)},
+   {id:cid('u1',H),a:H,b:'u1',jobId:'j3',updated:minsAgo(200)},
+   {id:cid('u2','u4'),a:'u2',b:'u4',jobId:'j11',updated:minsAgo(60)}
+  ],
+  msgs:[
+   {id:'m1',conv:cid('u1','u2'),from:'u2',text:'สวัสดีค่ะคุณสมชาย เห็นผลงานใน Behance แล้วชอบสไตล์มากเลยค่ะ',at:minsAgo(95),read:true},
+   {id:'m2',conv:cid('u1','u2'),from:'u1',text:'ขอบคุณครับ ร้านอยากได้โทนสีประมาณไหนครับ',at:minsAgo(80),read:true},
+   {id:'m3',conv:cid('u1','u2'),from:'u2',text:'โทนพาสเทลค่ะ ชมพูกับครีม ส่งข้อเสนอจ้างงานไปให้แล้วนะคะ ฝากกดยืนยันด้วยค่ะ 🙏',at:minsAgo(35),read:false},
+   {id:'m4',conv:cid('u1',H),from:H,text:'สวัสดีค่ะ ได้รับใบสมัครงานเขียนบทความแล้ว ขอดูตัวอย่างบทความสุขภาพที่เคยเขียนได้ไหมคะ',at:minsAgo(200),read:false},
+   {id:'m5',conv:cid('u2','u4'),from:'u4',text:'สวัสดีครับ พรุ่งนี้สะดวกให้เข้าไปถ่ายที่ร้านช่วง 10 โมงไหมครับ',at:minsAgo(120),read:true},
+   {id:'m6',conv:cid('u2','u4'),from:'u2',text:'สะดวกค่ะ เจอกันนะคะ',at:minsAgo(100),read:true},
+   {id:'m7',conv:cid('u2','u4'),from:'u4',text:'รับทราบครับ จะเตรียมไฟและฉากขาวไปด้วยครับ',at:minsAgo(60),read:false}
+  ]
+ };
+}
+
+let db=load();
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY));if(d&&d.users&&d.msgs)return d}catch(e){}return seed()}
+function save(){localStorage.setItem(KEY,JSON.stringify(db))}
+function resetDemo(){if(confirm('รีเซ็ตข้อมูลเดโมทั้งหมด?')){db=seed();save();init()}}
+
+/* ================= HELPERS ================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'฿'+Number(n).toLocaleString('th-TH');
+const uid=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const me=()=>db.users.find(u=>u.id===sessionStorage.getItem(SKEY));
+const userById=id=>db.users.find(u=>u.id===id)||{id,name:'ผู้ใช้',skills:[]};
+const jobById=id=>db.jobs.find(j=>j.id===id);
+const home=()=>me()?.role==='employer'?'employer':'jobs';
+const locLabel=l=>l===ONLINE?'💻 ออนไลน์':'📍 '+l;
+function timeAgo(iso){const d=Math.floor((Date.now()-new Date(iso))/864e5);return d<=0?'วันนี้':d+' วันที่แล้ว'}
+const hhmm=iso=>new Date(iso).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+function dayLabel(iso){const d=new Date(iso),diff=Math.round((new Date(new Date().toDateString())-new Date(d.toDateString()))/864e5);
+ return diff===0?'วันนี้':diff===1?'เมื่อวาน':d.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'})}
+function shortTime(iso){const l=dayLabel(iso);return l==='วันนี้'?hhmm(iso):l==='เมื่อวาน'?l:new Date(iso).toLocaleDateString('th-TH',{day:'numeric',month:'short'})}
+function toast(msg){document.querySelectorAll('.toast').forEach(t=>t.remove());const t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3200)}
+const COLORS=['#0A1F5C','#1A5CF0','#E59E1F','#16A34A','#7C3AED','#0E7490','#DB2777'];
+function coColor(name){let h=0;for(const c of String(name))h=(h*31+c.charCodeAt(0))%997;return COLORS[h%COLORS.length]}
+function initial(name){const m=String(name||'?').match(/[ก-ฮA-Za-z0-9]/);return m?m[0].toUpperCase():'?'}
+function av(u,size=38){const st=`width:${size}px;height:${size}px;min-width:${size}px;font-size:${Math.round(size*.42)}px`;
+ return u&&u.photo?`<img class="avatar" src="${u.photo}" alt="" style="${st};object-fit:cover">`:`<div class="avatar" style="${st};background:${coColor(u?.name)}">${esc(initial(u?.name))}</div>`}
+function catOptions(sel='',first){return(first?`<option value="">${first}</option>`:'')+CAT_GROUPS.map(([g,l])=>`<optgroup label="${g}">${l.map(([c,i])=>`<option value="${c}" ${c===sel?'selected':''}>${i} ${c}</option>`).join('')}</optgroup>`).join('')}
+function provOptions(sel=''){return '<option value="">เลือกจังหวัด</option>'+REGIONS.map(([r,l])=>`<optgroup label="${r}">${l.map(p=>`<option ${p===sel?'selected':''}>${p}</option>`).join('')}</optgroup>`).join('')}
+function locOptions(withRegion,first){return(first?`<option value="">${first}</option>`:'')+`<option value="${ONLINE}">💻 ทำงานออนไลน์ (Remote)</option>`+
+ REGIONS.map(([r,l])=>`<optgroup label="${r} (${l.length} จังหวัด)">${withRegion?`<option value="R:${r}">— ทั้ง${r}</option>`:''}${l.map(p=>`<option>${p}</option>`).join('')}</optgroup>`).join('')}
+
+/* ================= LOGO ================= */
+function logoIcon(s){return `<svg width="${s}" height="${s}" viewBox="0 0 120 120" aria-label="FoundWork logo">
+ <defs><clipPath id="lens${s}"><circle cx="62" cy="54" r="30"/></clipPath>
+ <linearGradient id="bag${s}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A86F7"/><stop offset="1" stop-color="#1A5CF0"/></linearGradient></defs>
+ <g stroke="#F9B233" stroke-width="6" stroke-linecap="round"><line x1="31" y1="8" x2="37" y2="22"/><line x1="13" y1="22" x2="26" y2="30"/><line x1="8" y1="43" x2="22" y2="42"/></g>
+ <g clip-path="url(#lens${s})"><circle cx="62" cy="40" r="10" fill="#0A1F5C"/><path d="M40 84 Q40 57 62 55 Q84 57 84 84 Z" fill="#0A1F5C"/><path d="M59.5 56 L64.5 56 L63.6 66 L62 68.5 L60.4 66 Z" fill="#fff"/></g>
+ <circle cx="62" cy="54" r="33" fill="none" stroke="#0A1F5C" stroke-width="7"/>
+ <line x1="86" y1="79" x2="105" y2="98" stroke="#0A1F5C" stroke-width="11" stroke-linecap="round"/>
+ <rect x="54" y="62" width="16" height="11" rx="3" fill="none" stroke="#fff" stroke-width="7"/>
+ <rect x="54" y="62" width="16" height="11" rx="3" fill="none" stroke="#1A5CF0" stroke-width="3.2"/>
+ <rect x="43" y="68" width="38" height="28" rx="5" fill="url(#bag${s})" stroke="#fff" stroke-width="3"/>
+ <path d="M44.5 79 Q62 85 79.5 79" fill="none" stroke="#fff" stroke-width="1.6"/>
+ <rect x="59" y="78" width="6" height="6.5" rx="1.5" fill="#fff"/></svg>`}
+function renderLogos(){
+ $('#bigLogo').innerHTML=logoIcon(150)+`<div class="wm"><span class="f">Found</span><span class="w">Work</span></div><div class="tagline">หางานที่ใช่ ได้งานที่ชอบ</div>`;
+ $('#smallLogo').innerHTML=logoIcon(46)+`<div class="wordmark"><div class="wm"><span class="f">Found</span><span class="w">Work</span></div><small>หางานที่ใช่ ได้งานที่ชอบ</small></div>`;
+}
+
+/* ================= AUTH ================= */
+document.querySelectorAll('[data-auth]').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('[data-auth]').forEach(x=>x.classList.toggle('active',x===b));
+ const reg=b.dataset.auth==='register';
+ $('#loginForm').classList.toggle('hidden',reg);$('#regForm').classList.toggle('hidden',!reg);
+ $('#authTitle').textContent=reg?'สร้างบัญชีใหม่':'ยินดีต้อนรับกลับมา';
+ $('#authSub').textContent=reg?'สมัครฟรี เริ่มหางานหรือลงประกาศได้ทันที':'เข้าสู่ระบบเพื่อหางานที่ใช่ หรือหาคนทำงานที่ชอบ';
+});
+document.querySelectorAll('input[name=role]').forEach(r=>r.onchange=()=>$('#skillField').classList.toggle('hidden',r.value==='employer'&&r.checked));
+$('#loginForm').onsubmit=e=>{e.preventDefault();
+ const u=db.users.find(u=>u.email.toLowerCase()===$('#lEmail').value.trim().toLowerCase()&&u.password===$('#lPass').value);
+ if(!u){$('#lErr').textContent='อีเมลหรือรหัสผ่านไม่ถูกต้อง';return}
+ $('#lErr').textContent='';loginAs(u);
+};
+$('#regForm').onsubmit=e=>{e.preventDefault();
+ const email=$('#rEmail').value.trim();
+ if(db.users.some(u=>u.email.toLowerCase()===email.toLowerCase())){$('#rErr').textContent='อีเมลนี้ถูกใช้แล้ว';return}
+ const role=document.querySelector('input[name=role]:checked').value;
+ const u={id:uid('u'),role,name:$('#rName').value.trim(),email,password:$('#rPass').value,province:$('#rProv').value,joined:new Date().toISOString(),
+  title:role==='freelancer'?'ฟรีแลนซ์มือใหม่':'',skills:$('#rSkills').value.split(',').map(s=>s.trim()).filter(Boolean),experience:[],links:[],availability:AVAIL[0]};
+ db.users.push(u);save();toast('สมัครสมาชิกสำเร็จ เติมโปรไฟล์ให้ครบเพื่อเพิ่มโอกาสได้งาน');loginAs(u);
+};
+function demoLogin(email){$('#lEmail').value=email;$('#lPass').value='1234';$('#loginForm').requestSubmit()}
+function loginAs(u){sessionStorage.setItem(SKEY,u.id);init();toast('สวัสดี '+u.name)}
+function logout(){sessionStorage.removeItem(SKEY);init()}
+
+/* ================= ROUTER ================= */
+let curView=null;
+function init(){
+ renderLogos();
+ const u=me();
+ $('#view-login').classList.toggle('hidden',!!u);
+ $('#app').classList.toggle('hidden',!u);
+ activeConv=null;paneConv=null;profileEdit=false;profileId=null;
+ updateTitle();
+ if(!u)return;
+ renderHeaderUser();
+ $('#fCat').innerHTML=catOptions('',`ทุกหมวดหมู่ (${CATS.length})`);
+ $('#fType').innerHTML='<option value="">ทุกประเภทงาน</option>'+TYPES.map(t=>`<option>${t}</option>`).join('');
+ $('#fLoc').innerHTML=locOptions(true,`ทุกพื้นที่ (${PROV_COUNT} จังหวัด)`);
+ $('#fSort').innerHTML=(u.role==='freelancer'?'<option value="match">เรียงตาม: AI แนะนำ</option>':'')+'<option value="new">เรียงตาม: ล่าสุด</option><option value="budget">เรียงตาม: ค่าตอบแทนสูงสุด</option>';
+ $('#pCat').innerHTML=catOptions();$('#pType').innerHTML=TYPES.map(t=>`<option>${t}</option>`).join('');$('#pLoc').innerHTML=locOptions(false);
+ ping();go(home());
+}
+function renderHeaderUser(){const u=me();$('#uAvatar').innerHTML=av(u,38);$('#uName').textContent=u.name;$('#uRole').textContent=u.role==='freelancer'?'ฟรีแลนซ์ / ผู้หางาน':'ผู้ว่าจ้าง'}
+function renderNav(active){
+ const u=me();if(!u)return;
+ const un=unreadTotal();
+ const links=u.role==='freelancer'
+  ?[['jobs','หางาน',0],['my','งานของฉัน',db.apps.filter(a=>a.userId===u.id&&a.status==='offered').length],['chat','ข้อความ',un],['profile','โปรไฟล์',0]]
+  :[['employer','จัดการงาน',empPending(u).length],['jobs','ประกาศทั้งหมด',0],['chat','ข้อความ',un],['profile','โปรไฟล์',0]];
+ $('#navLinks').innerHTML=links.map(([v,t,n])=>`<button class="${v===active&&!(v==='profile'&&profileId!==u.id)?'active':''}" onclick="${v==='profile'?'viewProfile()':`go('${v}')`}">${t}${n?`<span class="dot">${n}</span>`:''}</button>`).join('');
+ updateTitle();
+}
+function updateTitle(){const n=me()?unreadTotal():0;document.title=(n?`(${n}) `:'')+'FoundWork – หางานที่ใช่ ได้งานที่ชอบ'}
+function go(view){
+ curView=view;
+ document.querySelectorAll('#app .view').forEach(v=>v.classList.add('hidden'));
+ $('#view-'+view).classList.remove('hidden');
+ renderNav(view);
+ ({jobs:renderJobs,my:renderMy,employer:renderEmployer,chat:renderChat,profile:renderProfile})[view]();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function refresh(){
+ if(!me())return init();
+ renderNav(curView);
+ if(curView==='jobs')renderJobs();
+ else if(curView==='my')renderMy();
+ else if(curView==='employer')renderEmployer();
+ else if(curView==='chat')renderChat();
+ else if(curView==='profile'&&!profileEdit)renderProfile();
+}
+
+/* ================= AI MATCH ================= */
+function matchScore(job,u){
+ if(!u||u.role!=='freelancer')return null;
+ const sk=(u.skills||[]).map(s=>s.toLowerCase());
+ const hit=job.tags.filter(t=>sk.includes(t.toLowerCase())).length;
+ const near=job.location===u.province?8:0;
+ if(!hit)return 20+(job.starter?10:0)+near;
+ return Math.min(98,Math.round(50+42*hit/job.tags.length+(job.starter?3:0)+near));
+}
+const matchCls=s=>s>=75?'m-high':s>=45?'m-mid':'m-low';
+const isHit=(t,u)=>(u?.skills||[]).some(s=>s.toLowerCase()===t.toLowerCase());
+const myApp=(jobId,u)=>db.apps.find(a=>a.jobId===jobId&&a.userId===u.id&&a.status!=='withdrawn');
+
+/* ================= JOB SEARCH ================= */
+$('#q').addEventListener('keydown',e=>{if(e.key==='Enter')renderJobs()});
+['#fCat','#fType','#fLoc'].forEach(s=>$(s).addEventListener('change',renderJobs));
+function setCat(c){$('#fCat').value=c;renderJobs()}
+function renderJobs(){
+ const u=me();
+ $('#heroTitle').innerHTML=u.role==='freelancer'?`สวัสดี คุณ${esc(u.name.split(' ')[0])} มาหา<span class="hl">งานที่ใช่</span>กันเถอะ`:`ดูประกาศงานทั้งหมดบน <span class="hl">FoundWork</span>`;
+ $('#heroSub').textContent=u.role==='freelancer'?`AI จัดอันดับงานจากทักษะ${u.province?' และงานใกล้คุณใน'+u.province:''} · ${CATS.length} หมวดหมู่ ครอบคลุม ${PROV_COUNT} จังหวัด`:`ดูภาพรวมตลาด ${CATS.length} หมวดหมู่ ทั่ว ${PROV_COUNT} จังหวัด`;
+ const q=$('#q').value.trim().toLowerCase(),cat=$('#fCat').value,type=$('#fType').value,loc=$('#fLoc').value,starter=$('#fStarter').checked,sort=$('#fSort').value;
+ const open=db.jobs.filter(j=>j.status==='open');
+ const locOk=j=>!loc||(loc.startsWith('R:')?REGION_OF[j.location]===loc.slice(2):j.location===loc);
+ const base=open.filter(j=>(!q||[j.title,j.company,j.tags.join(' '),j.desc,j.location,j.category].join(' ').toLowerCase().includes(q))&&(!type||j.type===type)&&locOk(j)&&(!starter||j.starter));
+ const counts={};base.forEach(j=>counts[j.category]=(counts[j.category]||0)+1);
+ $('#catChips').innerHTML=`<button class="chip ${!cat?'active':''}" onclick="setCat('')">🔎 ทั้งหมด <small>(${base.length})</small></button>`+
+  CATS.map(c=>`<button class="chip ${c===cat?'active':''}" onclick="setCat('${c}')">${CAT_ICON[c]} ${c}${counts[c]?` <small>(${counts[c]})</small>`:''}</button>`).join('');
+ let list=base.filter(j=>!cat||j.category===cat).map(j=>({...j,score:matchScore(j,u)}));
+ if(sort==='match')list.sort((a,b)=>b.score-a.score);
+ else if(sort==='budget')list.sort((a,b)=>b.max-a.max);
+ else list.sort((a,b)=>new Date(b.posted)-new Date(a.posted));
+ $('#jobCount').textContent=`พบ ${list.length} งาน`;
+ $('#jobList').innerHTML=list.length?list.map(j=>jobCard(j,u)).join(''):`<div class="card empty" style="grid-column:1/-1"><b>ไม่พบงานที่ตรงกับเงื่อนไข</b>ลองเปลี่ยนจังหวัด หมวดหมู่ หรือคำค้นหา</div>`;
+}
+function applyBtn(j,u){
+ if(u.role==='employer')return j.employerId===u.id?`<button class="btn btn-sm btn-navy" onclick="closeModal();go('employer')">จัดการงานนี้</button>`:'';
+ return myApp(j.id,u)?`<button class="btn btn-sm btn-outline" onclick="closeModal();go('my')">สมัครแล้ว · ดูสถานะ</button>`:`<button class="btn btn-sm btn-primary" onclick="openApply('${j.id}')">สมัครงาน</button>`;
+}
+function jobCard(j,u){
+ return `<div class="card job-card">
+  <div class="jc-top">
+   <div class="co-logo" style="background:${coColor(j.company)}">${esc(initial(j.company))}</div>
+   <div class="info"><h3>${esc(j.title)}</h3><div class="muted"><span class="link" onclick="viewProfile('${j.employerId}')">${esc(j.company)}</span> · ${timeAgo(j.posted)}</div></div>
+   ${j.score!=null?`<div class="match ${matchCls(j.score)}"><b>${j.score}%</b>AI Match</div>`:''}
+  </div>
+  <div class="badges"><span class="badge type">${j.type}</span><span class="badge">${CAT_ICON[j.category]||''} ${j.category}</span>${j.starter?'<span class="badge starter">★ Starter Gig</span>':''}${u.province&&j.location===u.province?'<span class="badge near">ใกล้คุณ</span>':''}</div>
+  <p class="desc">${esc(j.desc)}</p>
+  <div class="tags">${j.tags.map(t=>`<span class="tag ${isHit(t,u)?'hit':''}">${esc(t)}</span>`).join('')}</div>
+  <div class="jc-foot">
+   <div class="meta"><span>${locLabel(j.location)}</span><span class="money">${money(j.min)} – ${money(j.max)} ${j.unit}</span></div>
+   <div class="actions"><button class="btn btn-sm btn-ghost" onclick="openDetail('${j.id}')">รายละเอียด</button>${applyBtn(j,u)}</div>
+  </div></div>`;
+}
+
+/* ================= MODAL ================= */
+function openModal(title,body,foot=''){
+ $('#modalRoot').innerHTML=`<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal">
+  <div class="modal-head"><div>${title}</div><button class="x" onclick="closeModal()">×</button></div>
+  <div class="modal-body">${body}</div>${foot?`<div class="modal-foot">${foot}</div>`:''}</div></div>`;
+}
+function closeModal(){$('#modalRoot').innerHTML=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+function openDetail(id){
+ const j=jobById(id),u=me(),s=matchScore(j,u),n=db.apps.filter(a=>a.jobId===id).length;
+ openModal(`<h3>${esc(j.title)}</h3><div class="muted"><span class="link" onclick="viewProfile('${j.employerId}')">${esc(j.company)}</span> · ประกาศ${timeAgo(j.posted)}</div>`,
+  `<div class="badges"><span class="badge type">${j.type}</span><span class="badge">${CAT_ICON[j.category]||''} ${j.category}</span>${j.starter?'<span class="badge starter">★ Starter Gig</span>':''}</div>
+   <div class="detail-grid"><div>ค่าตอบแทน<b>${money(j.min)} – ${money(j.max)}</b>${j.unit}</div><div>พื้นที่<b>${j.location}</b>${j.location!==ONLINE?REGION_OF[j.location]:'ทำจากที่ไหนก็ได้'}</div><div>ผู้สมัครแล้ว<b>${n} คน</b></div></div>
+   ${s!=null?`<div class="ai-box"><span>AI วิเคราะห์ว่างานนี้เหมาะกับคุณ <b>${s}%</b> — ทักษะที่ตรง: ${j.tags.filter(t=>isHit(t,u)).join(', ')||'ยังไม่มี (ลองเรียนเพิ่ม: '+j.tags.join(', ')+')'}</span></div>`:''}
+   <label>รายละเอียดงาน</label><p style="margin-bottom:14px">${esc(j.desc)}</p>
+   <label>ทักษะที่ต้องการ</label><div class="tags">${j.tags.map(t=>`<span class="tag ${isHit(t,u)?'hit':''}">${esc(t)}</span>`).join('')}</div>
+   <div class="note" style="margin-top:14px">🔒 ชำระเงินผ่านระบบพักเงินของ FoundWork ผู้ว่าจ้างวางเงินก่อนเริ่มงาน และปล่อยเงินเมื่ออนุมัติงาน</div>`,
+  `<button class="btn btn-ghost" onclick="closeModal()">ปิด</button>${u.role==='freelancer'?`<button class="btn btn-outline btn-sm" onclick="openChat('${j.employerId}','${j.id}')">💬 ถามผู้ว่าจ้าง</button>`:''}${applyBtn(j,u)}`);
+}
+
+/* ================= APPLY ================= */
+function openApply(id){
+ const j=jobById(id),mid=Math.round((j.min+j.max)/2);
+ openModal(`<h3>สมัครงาน</h3><div class="muted">${esc(j.title)} · ${esc(j.company)}</div>`,
+  `<div class="ai-box"><span>💡 AI แนะนำราคา: <b>${money(j.min)} – ${money(mid)}</b> ${j.unit}</span>
+    <button type="button" class="btn btn-sm btn-outline" onclick="aiDraft('${j.id}')">✨ ให้ AI ช่วยร่างข้อความ</button></div>
+   <div class="field"><label>ข้อความแนะนำตัว *</label><textarea id="aMsg" placeholder="บอกผู้ว่าจ้างว่าทำไมคุณเหมาะกับงานนี้ (อย่างน้อย 20 ตัวอักษร)"></textarea></div>
+   <div class="row">
+    <div class="field"><label>ราคาที่เสนอ (บาท ${j.unit}) *</label><input type="number" id="aPrice" min="1" value="${mid}"></div>
+    <div class="field"><label>ระยะเวลาทำงาน (วัน) *</label><input type="number" id="aDays" min="1" value="7"></div>
+   </div>
+   <div class="field"><label>ลิงก์ผลงาน / พอร์ตโฟลิโอ</label><input id="aPort" placeholder="https://" value="${esc((me().links||[])[0]||'')}"></div>
+   <div class="err" id="aErr"></div>`,
+  `<button class="btn btn-ghost" onclick="closeModal()">ยกเลิก</button><button class="btn btn-primary" onclick="submitApply('${j.id}')">ส่งใบสมัคร</button>`);
+}
+function aiDraft(id){
+ const j=jobById(id),u=me(),hit=j.tags.filter(t=>isHit(t,u));
+ $('#aMsg').value=`สวัสดีครับ/ค่ะ ${j.company}\n${u.name} ${u.title?'('+u.title+') ':''}สนใจงาน "${j.title}" ${hit.length?`เนื่องจากมีทักษะด้าน ${hit.join(', ')} ซึ่งตรงกับที่ต้องการ`:'และพร้อมเรียนรู้สิ่งที่งานต้องการอย่างเต็มที่'}${u.province&&u.province===j.location?` และอยู่ใน${u.province} สะดวกเดินทาง`:''}\nสามารถส่งงานได้ตามกำหนด พร้อมแก้ไขตามคำแนะนำ และอัปเดตความคืบหน้าสม่ำเสมอ\nขอบคุณที่พิจารณาครับ/ค่ะ`;
+ toast('AI ร่างข้อความให้แล้ว แก้ไขเพิ่มได้ตามต้องการ');
+}
+function submitApply(id){
+ const msg=$('#aMsg').value.trim(),price=+$('#aPrice').value,days=+$('#aDays').value;
+ if(msg.length<20)return $('#aErr').textContent='กรุณาเขียนข้อความแนะนำตัวอย่างน้อย 20 ตัวอักษร';
+ if(!(price>0)||!(days>0))return $('#aErr').textContent='กรุณาระบุราคาและระยะเวลาให้ถูกต้อง';
+ db.apps.push({id:uid('a'),jobId:id,userId:me().id,message:msg,price,days,portfolio:$('#aPort').value.trim(),status:'pending',created:new Date().toISOString()});
+ save();closeModal();toast('ส่งใบสมัครเรียบร้อย รอผู้ว่าจ้างพิจารณา');refresh();
+}
+
+/* ================= FREELANCER: MY JOBS ================= */
+const STATUS={pending:['รอพิจารณา','st-yellow'],offered:['ได้รับข้อเสนองาน','st-blue'],accepted:['กำลังดำเนินการ','st-navy'],submitted:['ส่งมอบแล้ว รอตรวจ','st-purple'],completed:['เสร็จสมบูรณ์','st-green'],rejected:['ไม่ผ่านการคัดเลือก','st-red'],declined:['ปฏิเสธข้อเสนอ','st-gray'],withdrawn:['ยกเลิกใบสมัคร','st-gray']};
+const EMP_LABEL={offered:'ส่งข้อเสนอแล้ว รอตอบรับ',declined:'ผู้สมัครปฏิเสธข้อเสนอ',withdrawn:'ผู้สมัครยกเลิก',submitted:'ส่งมอบงานแล้ว รอคุณตรวจ'};
+const STEPS=['สมัครงาน','ได้รับข้อเสนอ','รับงาน','ส่งมอบ','เสร็จสิ้น'];
+const STEP_IDX={pending:0,offered:1,accepted:2,submitted:3,completed:4};
+const pill=(s,emp)=>`<span class="status ${STATUS[s][1]}">${emp&&EMP_LABEL[s]||STATUS[s][0]}</span>`;
+function stepper(s){
+ const k=STEP_IDX[s];if(k==null)return'';
+ return `<div class="stepper">${STEPS.map((t,i)=>`${i?`<div class="bar ${i<=k?'done':''}"></div>`:''}<div class="step ${i<k||s==='completed'?'done':i===k?'now':''}"><i>${i<k||s==='completed'?'✓':i+1}</i>${t}</div>`).join('')}</div>`;
+}
+let myTab='all';
+const MY_TABS=[['all','ทั้งหมด',()=>true],['pending','รอพิจารณา',a=>a.status==='pending'],['offered','ข้อเสนองาน',a=>a.status==='offered'],['active','กำลังทำ',a=>['accepted','submitted'].includes(a.status)],['done','เสร็จสิ้น',a=>a.status==='completed'],['closed','ปิดแล้ว',a=>['rejected','declined','withdrawn'].includes(a.status)]];
+function renderMy(){
+ const u=me(),mine=db.apps.filter(a=>a.userId===u.id).sort((a,b)=>new Date(b.created)-new Date(a.created));
+ const earned=mine.filter(a=>a.status==='completed').reduce((s,a)=>s+a.price,0);
+ $('#myKpis').innerHTML=[['สมัครทั้งหมด',mine.length],['ข้อเสนอรอตอบรับ',mine.filter(a=>a.status==='offered').length],['งานที่กำลังทำ',mine.filter(a=>['accepted','submitted'].includes(a.status)).length],['รายได้สะสม',money(earned)]].map(([l,v])=>`<div class="card kpi"><span>${l}</span><b>${v}</b></div>`).join('');
+ $('#mySubtabs').innerHTML=MY_TABS.map(([k,t,f])=>`<button class="${k===myTab?'active':''}" onclick="myTab='${k}';renderMy()">${t} (${mine.filter(f).length})</button>`).join('');
+ const list=mine.filter(MY_TABS.find(t=>t[0]===myTab)[2]);
+ $('#myList').innerHTML=list.length?list.map(a=>{
+  const j=jobById(a.jobId);if(!j)return'';
+  let act='';
+  if(a.status==='offered')act=`<div class="offer-box"><div><b>🎉 ${esc(j.company)} ต้องการจ้างคุณ!</b><div class="muted">ค่าจ้าง ${money(a.price)} · ระยะเวลา ${a.days} วัน · ผู้ว่าจ้างวางเงินพักไว้ในระบบแล้ว</div></div><div class="actions"><button class="btn btn-sm btn-red" onclick="setStatus('${a.id}','declined','ปฏิเสธข้อเสนอแล้ว')">ปฏิเสธ</button><button class="btn btn-sm btn-green" onclick="confirmAccept('${a.id}')">ยืนยันรับงาน</button></div></div>`;
+  else if(a.status==='pending')act=`<div class="actions"><button class="btn btn-sm btn-ghost" onclick="setStatus('${a.id}','withdrawn','ยกเลิกใบสมัครแล้ว')">ยกเลิกใบสมัคร</button></div>`;
+  else if(a.status==='accepted')act=`<div class="actions"><button class="btn btn-sm btn-primary" onclick="openDeliver('${a.id}')">ส่งมอบงาน</button></div>`;
+  else if(a.status==='submitted')act=`<div class="note">📦 ส่งงานแล้ว: <a href="${esc(a.deliverable)}" target="_blank">${esc(a.deliverable)}</a> — รอผู้ว่าจ้างตรวจและปล่อยเงิน</div>`;
+  else if(a.status==='completed')act=`<div class="note" style="background:var(--green-l)">✅ ได้รับเงิน ${money(a.price)} เรียบร้อย${a.review?` · รีวิว <span class="stars">${'★'.repeat(a.review.rating)}</span> "${esc(a.review.comment)}"`:''}</div>`;
+  return `<div class="card app-card">
+   <div class="app-head"><div><h3>${esc(j.title)}</h3><div class="muted"><span class="link" onclick="viewProfile('${j.employerId}')">${esc(j.company)}</span> · ${locLabel(j.location)} · เสนอ ${money(a.price)} ${j.unit} · ${a.days} วัน · สมัคร${timeAgo(a.created)}</div></div>
+    <div class="actions">${pill(a.status)}<button class="btn btn-sm btn-ghost" onclick="openChat('${j.employerId}','${j.id}')">💬 แชต</button></div></div>
+   ${stepper(a.status)}${act}</div>`;
+ }).join(''):`<div class="card empty"><b>ยังไม่มีรายการในหมวดนี้</b><button class="btn btn-primary" style="margin-top:12px" onclick="go('jobs')">ไปหางาน</button></div>`;
+}
+function setStatus(id,status,msg){
+ const a=db.apps.find(x=>x.id===id);a.status=status;chatNotify(a,status);save();closeModal();toast(msg);refresh();
+ const f=userById(a.userId);
+ if(status==='offered'&&f.bot)setTimeout(()=>{
+  const x=db.apps.find(y=>y.id===id);if(!x||x.status!=='offered')return;
+  x.status='accepted';chatNotify(x,'accepted');save();toast(`✅ ${f.name} ยืนยันรับงานแล้ว`);refresh();
+ },3500);
+}
+function confirmAccept(id){
+ const a=db.apps.find(x=>x.id===id),j=jobById(a.jobId);
+ openModal('<h3>ยืนยันรับงาน</h3>',
+  `<p>คุณกำลังรับงาน <b>${esc(j.title)}</b> จาก ${esc(j.company)}</p>
+   <div class="detail-grid"><div>ค่าจ้าง<b>${money(a.price)}</b></div><div>กำหนดส่ง<b>${a.days} วัน</b></div><div>ค่าธรรมเนียม<b>${j.starter?'ฟรี (Starter)':'10%'}</b></div></div>
+   <div class="note">🔒 เงินถูกพักไว้ในระบบ FoundWork แล้ว คุณจะได้รับเงินเมื่อผู้ว่าจ้างอนุมัติงาน</div>`,
+  `<button class="btn btn-ghost" onclick="closeModal()">ยกเลิก</button><button class="btn btn-green" onclick="setStatus('${id}','accepted','รับงานเรียบร้อย เริ่มทำงานได้เลย!')">ยืนยันรับงาน</button>`);
+}
+function openDeliver(id){
+ openModal('<h3>ส่งมอบงาน</h3>',
+  `<div class="field"><label>ลิงก์ไฟล์งาน *</label><input id="dLink" placeholder="https://drive.google.com/..."></div>
+   <div class="field"><label>ข้อความถึงผู้ว่าจ้าง</label><textarea id="dNote" placeholder="สรุปสิ่งที่ส่งมอบ"></textarea></div><div class="err" id="dErr"></div>`,
+  `<button class="btn btn-ghost" onclick="closeModal()">ยกเลิก</button><button class="btn btn-primary" onclick="deliver('${id}')">ส่งงาน</button>`);
+}
+function deliver(id){
+ const link=$('#dLink').value.trim();
+ if(!/^https?:\/\//.test(link))return $('#dErr').textContent='กรุณาใส่ลิงก์ที่ขึ้นต้นด้วย http:// หรือ https://';
+ const a=db.apps.find(x=>x.id===id);a.deliverable=link;a.deliverNote=$('#dNote').value.trim();
+ setStatus(id,'submitted','ส่งมอบงานแล้ว รอผู้ว่าจ้างตรวจ');
+}
+
+/* ================= EMPLOYER ================= */
+const empPending=u=>db.apps.filter(a=>{const j=jobById(a.jobId);return j&&j.employerId===u.id&&['pending','submitted'].includes(a.status)});
+function togglePost(){$('#postBox').classList.toggle('hidden')}
+$('#postBox').onsubmit=e=>{e.preventDefault();
+ const min=+$('#pMin').value,max=+$('#pMax').value;
+ if(max<min)return toast('งบสูงสุดต้องมากกว่าหรือเท่ากับงบต่ำสุด');
+ const u=me();
+ db.jobs.unshift({id:uid('j'),employerId:u.id,company:u.name,title:$('#pTitle').value.trim(),category:$('#pCat').value,type:$('#pType').value,location:$('#pLoc').value,min,max,unit:$('#pUnit').value,tags:$('#pTags').value.split(',').map(s=>s.trim()).filter(Boolean),desc:$('#pDesc').value.trim(),starter:$('#pStarter').checked,posted:new Date().toISOString(),status:'open'});
+ save();e.target.reset();togglePost();toast('เผยแพร่ประกาศงานแล้ว');renderEmployer();
+};
+function toggleJob(id){const j=jobById(id);j.status=j.status==='open'?'closed':'open';save();toast(j.status==='open'?'เปิดรับสมัครอีกครั้ง':'ปิดรับสมัครแล้ว');renderEmployer()}
+function renderEmployer(){
+ const u=me(),jobs=db.jobs.filter(j=>j.employerId===u.id),ids=jobs.map(j=>j.id),apps=db.apps.filter(a=>ids.includes(a.jobId));
+ $('#empKpis').innerHTML=[['ประกาศที่เปิดรับ',jobs.filter(j=>j.status==='open').length],['ผู้สมัครใหม่',apps.filter(a=>a.status==='pending').length],['รอตรวจงาน',apps.filter(a=>a.status==='submitted').length],['งานเสร็จสิ้น',apps.filter(a=>a.status==='completed').length]].map(([l,v])=>`<div class="card kpi"><span>${l}</span><b>${v}</b></div>`).join('');
+ $('#empList').innerHTML=jobs.length?jobs.map(j=>{
+  const list=apps.filter(a=>a.jobId===j.id);
+  return `<div class="card job-block">
+   <div class="job-block-head"><div><h3>${esc(j.title)}</h3><div class="muted">${CAT_ICON[j.category]||''} ${j.category} · ${j.type} · ${locLabel(j.location)} · ${money(j.min)} – ${money(j.max)} ${j.unit} · ผู้สมัคร ${list.length} คน</div></div>
+    <div class="actions">${j.status==='open'?'<span class="status st-green">เปิดรับสมัคร</span>':'<span class="status st-gray">ปิดรับแล้ว</span>'}<button class="btn btn-sm btn-ghost" onclick="toggleJob('${j.id}')">${j.status==='open'?'ปิดรับสมัคร':'เปิดอีกครั้ง'}</button></div></div>
+   ${list.length?list.map(a=>applicantRow(a,j)).join(''):'<div class="no-app">ยังไม่มีผู้สมัคร</div>'}
+  </div>`}).join(''):`<div class="card empty"><b>คุณยังไม่มีประกาศงาน</b>กด "ลงประกาศงานใหม่" เพื่อเริ่มหาคน</div>`;
+}
+function applicantRow(a,j){
+ const f=userById(a.userId),s=matchScore(j,f),revs=reviewsOf(f.id);
+ const avg=revs.length?(revs.reduce((x,r)=>x+r.rating,0)/revs.length).toFixed(1):null;
+ let act=`<button class="btn btn-sm btn-ghost" onclick="openChat('${f.id}','${j.id}')">💬 แชต</button>`;
+ if(a.status==='pending')act+=`<button class="btn btn-sm btn-red" onclick="setStatus('${a.id}','rejected','แจ้งผลไม่ผ่านแล้ว')">ไม่ผ่าน</button><button class="btn btn-sm btn-green" onclick="offer('${a.id}')">เสนอจ้างงาน</button>`;
+ else if(a.status==='submitted')act+=`<a href="${esc(a.deliverable)}" target="_blank" class="btn btn-sm btn-ghost">ดูงานที่ส่ง</a><button class="btn btn-sm btn-primary" onclick="approve('${a.id}')">อนุมัติ & ปล่อยเงิน</button>`;
+ return `<div class="applicant">
+  ${av(f,44)}
+  <div><span class="link" onclick="viewProfile('${f.id}')">${esc(f.name)}</span> <span class="muted">· ${esc(f.title||'')}${f.province?' · 📍 '+esc(f.province):''}${avg?` · <span class="stars">★</span> ${avg}`:''}</span>
+   <div class="tags" style="margin-top:6px">${(f.skills||[]).map(t=>`<span class="tag ${j.tags.some(x=>x.toLowerCase()===t.toLowerCase())?'hit':''}">${esc(t)}</span>`).join('')}</div>
+   <div class="msg">"${esc(a.message)}"</div>
+   ${a.portfolio?`<a href="${esc(a.portfolio)}" target="_blank" style="font-size:13px">ดูพอร์ตโฟลิโอ</a>`:''}
+  </div>
+  <div class="right">${pill(a.status,true)}<span class="match ${matchCls(s)}"><b>${s}%</b>AI Match</span><span class="muted">เสนอ ${money(a.price)} · ${a.days} วัน</span><div class="actions">${act}</div></div>
+ </div>`;
+}
+function offer(id){
+ const a=db.apps.find(x=>x.id===id),f=userById(a.userId);
+ openModal('<h3>เสนอจ้างงาน</h3>',
+  `<p>ส่งข้อเสนอจ้างงานให้ <b>${esc(f.name)}</b></p>
+   <div class="detail-grid"><div>ค่าจ้าง<b>${money(a.price)}</b></div><div>ระยะเวลา<b>${a.days} วัน</b></div><div>ค่าบริการ 5%<b>${money(Math.round(a.price*.05))}</b></div></div>
+   <div class="note">🔒 ระบบจะพักเงิน ${money(Math.round(a.price*1.05))} ไว้ (เดโม: จำลองการชำระผ่าน PromptPay) และปล่อยเงินให้ฟรีแลนซ์เมื่อคุณอนุมัติงาน</div>`,
+  `<button class="btn btn-ghost" onclick="closeModal()">ยกเลิก</button><button class="btn btn-green" onclick="setStatus('${id}','offered','ส่งข้อเสนอแล้ว รอฟรีแลนซ์ตอบรับ')">ชำระและส่งข้อเสนอ</button>`);
+}
+let starVal=5;
+function approve(id){
+ const a=db.apps.find(x=>x.id===id),f=userById(a.userId);
+ openModal('<h3>อนุมัติงานและปล่อยเงิน</h3>',
+  `${a.deliverNote?`<label>ข้อความจากฟรีแลนซ์</label><div class="note" style="margin-bottom:12px">${esc(a.deliverNote)}</div>`:''}
+   <p>ระบบจะโอนเงิน <b>${money(a.price)}</b> ให้ <b>${esc(f.name)}</b></p>
+   <label style="margin-top:14px">ให้คะแนนการทำงาน</label>
+   <div class="star-pick" id="starPick">${[1,2,3,4,5].map(i=>`<span data-v="${i}" onclick="pickStar(${i})">★</span>`).join('')}</div>
+   <div class="field"><label>รีวิว (จะแสดงบนโปรไฟล์ฟรีแลนซ์)</label><textarea id="revText" placeholder="เช่น งานดี ส่งตรงเวลา สื่อสารง่าย"></textarea></div>`,
+  `<button class="btn btn-ghost" onclick="closeModal()">ยกเลิก</button><button class="btn btn-primary" onclick="doApprove('${id}')">อนุมัติ & ปล่อยเงิน</button>`);
+ pickStar(5);
+}
+function pickStar(v){starVal=v;document.querySelectorAll('#starPick span').forEach(s=>s.classList.toggle('on',+s.dataset.v<=v))}
+function doApprove(id){
+ const a=db.apps.find(x=>x.id===id);
+ a.review={rating:starVal,comment:$('#revText').value.trim()||'ทำงานได้ดี',by:me().id,at:new Date().toISOString()};
+ setStatus(id,'completed','อนุมัติงาน ปล่อยเงิน และบันทึกรีวิวแล้ว');
+}
+
+/* ================= CHAT (REAL-TIME) ================= */
+let activeConv=null,paneConv=null,typingFrom={},onlineAt={},lastTypingSent=0;
+const bc=('BroadcastChannel' in window)?new BroadcastChannel('foundwork_rt'):null;
+function myConvs(){const id=me()?.id;return db.convs.filter(c=>c.a===id||c.b===id).sort((x,y)=>new Date(y.updated)-new Date(x.updated))}
+const otherOf=c=>userById(c.a===me().id?c.b:c.a);
+const convMsgs=id=>db.msgs.filter(m=>m.conv===id).sort((a,b)=>new Date(a.at)-new Date(b.at));
+const unreadIn=id=>db.msgs.filter(m=>m.conv===id&&m.from!==me().id&&!m.read).length;
+function unreadTotal(){const u=me();if(!u)return 0;const ids=new Set(myConvs().map(c=>c.id));return db.msgs.filter(m=>ids.has(m.conv)&&m.from!==u.id&&!m.read).length}
+function ensureConv(x,y,jobId){const id=cid(x,y);let c=db.convs.find(c=>c.id===id);
+ if(!c){c={id,a:x,b:y,jobId:jobId||null,updated:new Date().toISOString()};db.convs.push(c)}else if(jobId)c.jobId=jobId;return c}
+function openChat(otherId,jobId){
+ closeModal();const u=me();if(!otherId||otherId===u.id)return;
+ const c=ensureConv(u.id,otherId,jobId);save();activeConv=c.id;go('chat');
+}
+function selectConv(id){activeConv=id;renderChat()}
+function backToList(){activeConv=null;renderChat()}
+function presenceText(o){return o.bot||onlineAt[o.id]>Date.now()-12000?'🟢 ออนไลน์':'⚪ ออฟไลน์ · จะได้รับข้อความเมื่อเข้าสู่ระบบ'}
+
+function renderChat(){
+ if(!activeConv&&window.innerWidth>960&&myConvs().length)activeConv=myConvs()[0].id;
+ renderConvList();
+ $('#chatWrap').classList.toggle('open',!!activeConv);
+ if(!activeConv){$('#chatPane').innerHTML='<div class="chat-empty"><div><b>เลือกบทสนทนา</b>หรือเริ่มแชตจากหน้ารายละเอียดงาน / รายชื่อผู้สมัคร</div></div>';paneConv=null;return}
+ if(paneConv!==activeConv){buildPane();paneConv=activeConv;renderMsgs(true)}else renderMsgs(false);
+}
+function renderConvList(){
+ const q=($('#convSearch').value||'').trim().toLowerCase(),u=me();
+ const list=myConvs().filter(c=>!q||otherOf(c).name.toLowerCase().includes(q));
+ $('#convItems').innerHTML=list.length?list.map(c=>{
+  const o=otherOf(c),ms=convMsgs(c.id),last=ms[ms.length-1],n=unreadIn(c.id),j=c.jobId&&jobById(c.jobId);
+  const typing=typingFrom[c.id]>Date.now()-3000;
+  return `<div class="conv ${c.id===activeConv?'active':''}" onclick="selectConv('${c.id}')">${av(o,44)}
+   <div class="cbody"><div class="top"><b>${esc(o.name)}</b><span class="t">${last?shortTime(last.at):''}</span></div>
+    ${j?`<div class="cjob">${esc(j.title)}</div>`:''}
+    <div class="bottom"><span class="prev ${n?'strong':''}">${typing?'<i style="color:var(--blue)">กำลังพิมพ์...</i>':last?(last.from===u.id?'คุณ: ':'')+esc(last.text):'เริ่มบทสนทนา'}</span>${n?`<span class="unread">${n}</span>`:''}</div></div></div>`;
+ }).join(''):'<div class="no-app">ยังไม่มีบทสนทนา<br>เริ่มแชตได้จากหน้ารายละเอียดงานหรือรายชื่อผู้สมัคร</div>';
+}
+function buildPane(){
+ const quick=me().role==='freelancer'
+  ?['สวัสดี สนใจงานนี้มาก','ขอรายละเอียดงานเพิ่มเติมหน่อย','ส่งงานได้ภายในกี่วัน','งบประมาณยืดหยุ่นได้ไหม']
+  :['สวัสดี ขอบคุณที่สมัครงาน','ขอดูตัวอย่างผลงานเพิ่มเติม','เริ่มงานได้เมื่อไหร่','ส่งข้อเสนอจ้างงานให้แล้ว'];
+ $('#chatPane').innerHTML=`<div class="chat-head" id="chatHead"></div><div class="msgs" id="msgs"></div><div class="typing" id="typing"></div>
+  <div class="quick">${quick.map(q=>`<button type="button" onclick="sendMsg(this.textContent)">${q}</button>`).join('')}</div>
+  <form class="chat-input" onsubmit="event.preventDefault();sendMsg()"><textarea id="msgInput" rows="1" placeholder="พิมพ์ข้อความ... (Enter ส่ง · Shift+Enter ขึ้นบรรทัดใหม่)"></textarea><button class="btn btn-primary" type="submit">ส่ง</button></form>`;
+ const ta=$('#msgInput');
+ ta.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();sendMsg()}});
+ ta.addEventListener('input',()=>{ta.style.height='auto';ta.style.height=Math.min(ta.scrollHeight,120)+'px';sendTyping()});
+ if(window.innerWidth>960)ta.focus();
+}
+function renderMsgs(force){
+ const c=db.convs.find(x=>x.id===activeConv);if(!c)return;
+ const o=otherOf(c),j=c.jobId&&jobById(c.jobId),u=me();
+ $('#chatHead').innerHTML=`<button class="btn btn-ghost btn-sm back" onclick="backToList()">←</button>${av(o,42)}
+  <div style="flex:1;min-width:0"><span class="link" onclick="viewProfile('${o.id}')">${esc(o.name)}</span><div class="muted" id="presence" style="font-size:12px">${presenceText(o)}</div></div>
+  ${j?`<button class="btn btn-sm btn-outline" onclick="openDetail('${j.id}')">งาน: ${esc(j.title.length>22?j.title.slice(0,22)+'…':j.title)}</button>`:''}`;
+ let changed=false;
+ if(curView==='chat'&&!document.hidden)db.msgs.forEach(m=>{if(m.conv===c.id&&m.from!==u.id&&!m.read){m.read=true;changed=true}});
+ if(changed){save();renderNav(curView);renderConvList()}
+ const box=$('#msgs'),atBottom=box.scrollHeight-box.scrollTop-box.clientHeight<80;
+ let lastDay='';
+ box.innerHTML=convMsgs(c.id).map(m=>{
+  const d=dayLabel(m.at),sep=d!==lastDay?`<div class="day-sep">${d}</div>`:'';lastDay=d;const mine=m.from===u.id;
+  return sep+`<div class="bubble ${mine?'mine':'theirs'} ${m.sys?'sys':''}">${esc(m.text)}<div class="bmeta">${hhmm(m.at)}${mine?(m.read?' · อ่านแล้ว ✓✓':' · ส่งแล้ว ✓'):''}</div></div>`;
+ }).join('')||'<div class="day-sep">เริ่มต้นบทสนทนา ทักทายกันได้เลย 👋</div>';
+ if(force||atBottom)box.scrollTop=box.scrollHeight;
+ renderTyping();
+}
+function renderTyping(){
+ const el=$('#typing');if(!el||!activeConv)return;
+ const c=db.convs.find(x=>x.id===activeConv);
+ el.innerHTML=c&&typingFrom[activeConv]>Date.now()-3000?`<span class="dots"><span></span><span></span><span></span></span>${esc(otherOf(c).name)} กำลังพิมพ์...`:'';
+}
+function sendTyping(){
+ if(!bc||!activeConv||Date.now()-lastTypingSent<1200)return;
+ lastTypingSent=Date.now();bc.postMessage({t:'typing',conv:activeConv,from:me().id});
+}
+function sendMsg(text){
+ const fromInput=text==null,ta=$('#msgInput');
+ text=(fromInput?ta.value:text).trim();if(!text||!activeConv)return;
+ const c=db.convs.find(x=>x.id===activeConv),u=me();
+ db.msgs.push({id:uid('m'),conv:c.id,from:u.id,text,at:new Date().toISOString(),read:false});
+ c.updated=new Date().toISOString();save();
+ if(fromInput){ta.value='';ta.style.height='auto'}
+ renderChat();renderMsgs(true);
+ const o=otherOf(c);if(o.bot)botReply(c.id,o,text);
+}
+function chatNotify(a,status){
+ const j=jobById(a.jobId);if(!j)return;
+ const T={offered:[j.employerId,`📩 ส่งข้อเสนอจ้างงาน "${j.title}" ค่าจ้าง ${money(a.price)} แล้ว กดยืนยันรับงานได้ที่เมนู "งานของฉัน"`],
+  accepted:[a.userId,`✅ ยืนยันรับงาน "${j.title}" แล้ว เริ่มดำเนินการได้เลย`],
+  declined:[a.userId,`ขออภัย ขอปฏิเสธข้อเสนองาน "${j.title}" ในครั้งนี้`],
+  submitted:[a.userId,`📦 ส่งมอบงาน "${j.title}" แล้ว: ${a.deliverable}`],
+  completed:[j.employerId,`🎉 อนุมัติงานและปล่อยเงิน ${money(a.price)} แล้ว ขอบคุณสำหรับงานดีๆ`],
+  rejected:[j.employerId,`ขอบคุณที่สมัครงาน "${j.title}" ครั้งนี้ยังไม่ผ่านการคัดเลือก หวังว่าจะได้ร่วมงานกันในโอกาสหน้า`]};
+ const t=T[status];if(!t)return;
+ const to=t[0]===a.userId?j.employerId:a.userId,c=ensureConv(t[0],to,j.id);
+ db.msgs.push({id:uid('m'),conv:c.id,from:t[0],text:t[1],at:new Date().toISOString(),read:false,sys:true});
+ c.updated=new Date().toISOString();
+}
+/* Simulated users reply automatically */
+function botText(t,bot){
+ const emp=bot.role==='employer',p=bot.female?'ค่ะ':'ครับ',nk=bot.female?'นะคะ':'นะครับ';
+ const rules=[
+  [/สวัสดี|หวัดดี|hello|hi/i,emp?`สวัสดี${p} ขอบคุณที่สนใจงานของเรา${nk} 😊 สอบถามรายละเอียดได้เลย${p}`:`สวัสดี${p} ยินดีที่ได้รู้จัก${p} มีงานแบบไหนให้ช่วย${p}`],
+  [/ราคา|งบ|บาท|ค่าจ้าง|เงิน/,emp?`งบประมาณเป็นไปตามที่ประกาศไว้${p} ถ้าผลงานตรงใจ ยินดีพิจารณาเพิ่มให้ในงานถัดไป${nk}`:`ราคาที่เสนอรวมการแก้ไข 2 ครั้งแล้ว${p} ถ้าขอบเขตงานเพิ่มขึ้นคุยกันได้${p}`],
+  [/กี่วัน|เมื่อไร|เมื่อไหร่|ส่งงาน|ระยะเวลา|เริ่ม/,emp?`อยากให้เริ่มภายในสัปดาห์นี้${p} ระยะเวลาตามที่ระบุในใบสมัครได้เลย${p}`:`เริ่มได้ทันที${p} ส่งงานตามกำหนดแน่นอน และจะอัปเดตความคืบหน้าทุก 2 วัน${p}`],
+  [/ผลงาน|ตัวอย่าง|พอร์ต/,emp?`ขอดูผลงานที่ใกล้เคียงกับงานนี้ 2-3 ชิ้นได้ไหม${bot.female?'คะ':'ครับ'} ส่งลิงก์มาในแชตได้เลย${p}`:`ดูผลงานได้ที่หน้าโปรไฟล์เลย${p} มีลิงก์พอร์ตโฟลิโอแนบไว้${p}`],
+  [/รายละเอียด|ขอบเขต|brief/i,emp?`รายละเอียดหลักอยู่ในประกาศ${p} หลังรับงานจะส่งไฟล์และข้อมูลแบรนด์ให้ทั้งหมด${nk}`:`รบกวนส่งรายละเอียดหรือไฟล์อ้างอิงมาได้เลย${p} จะได้ประเมินให้แม่นยำ${p}`],
+  [/ขอบคุณ|thank/i,`ยินดี${p} 🙏`]
+ ];
+ const hit=rules.find(([r])=>r.test(t));if(hit)return hit[1];
+ const def=emp?[`รับทราบ${p} ขอเวลาปรึกษาทีมสักครู่${nk}`,`ได้${p} เดี๋ยวแจ้งกลับภายในวันนี้${nk}`,`โอเค${p} มีคำถามเพิ่มเติมทักมาได้ตลอด${nk}`]:[`รับทราบ${p}`,`ได้${p} เดี๋ยวตรวจสอบแล้วแจ้งกลับ${nk}`,`โอเค${p} ยินดีช่วยเต็มที่${p}`];
+ return def[Math.floor(Math.random()*def.length)];
+}
+function botReply(convId,bot,text){
+ setTimeout(()=>{
+  db.msgs.forEach(m=>{if(m.conv===convId&&m.from!==bot.id)m.read=true});save();
+  typingFrom[convId]=Date.now()+2500;if(curView==='chat')renderChat();
+ },700);
+ setTimeout(()=>{
+  typingFrom[convId]=0;
+  const c=db.convs.find(x=>x.id===convId);if(!c||!me())return;
+  const reply=botText(text,bot);
+  db.msgs.push({id:uid('m'),conv:convId,from:bot.id,text:reply,at:new Date().toISOString(),read:false});
+  c.updated=new Date().toISOString();save();
+  if(!(curView==='chat'&&activeConv===convId))toast(`💬 ${bot.name}: ${reply.slice(0,50)}`);
+  refresh();
+ },2400+Math.random()*1500);
+}
+/* Real-time sync between tabs */
+window.addEventListener('storage',e=>{
+ if(e.key!==KEY)return;
+ const before=new Set(db.msgs.map(m=>m.id));
+ db=load();
+ const u=me();if(!u)return init();
+ const mine=new Set(myConvs().map(c=>c.id));
+ const fresh=db.msgs.filter(m=>!before.has(m.id)&&m.from!==u.id&&mine.has(m.conv));
+ fresh.forEach(m=>typingFrom[m.conv]=0);
+ refresh();
+ const last=fresh[fresh.length-1];
+ if(last&&!(curView==='chat'&&activeConv===last.conv&&!document.hidden))toast(`💬 ${userById(last.from).name}: ${last.text.slice(0,50)}`);
+});
+if(bc)bc.onmessage=e=>{
+ const d=e.data,u=me();if(!u||d.from===u.id)return;
+ if(d.t==='ping'){onlineAt[d.from]=Date.now();updatePresence()}
+ if(d.t==='typing'&&myConvs().some(c=>c.id===d.conv)){
+  onlineAt[d.from]=Date.now();typingFrom[d.conv]=Date.now();renderTyping();if(curView==='chat')renderConvList();
+  setTimeout(()=>{renderTyping();if(curView==='chat')renderConvList()},3100);
+ }
+};
+function ping(){const u=me();if(u&&bc)bc.postMessage({t:'ping',from:u.id})}
+function updatePresence(){const el=$('#presence');if(!el||!activeConv)return;const c=db.convs.find(x=>x.id===activeConv);if(c)el.textContent=presenceText(otherOf(c))}
+setInterval(()=>{ping();updatePresence()},4000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&curView==='chat'&&me())renderChat()});
+
+/* ================= PROFILE ================= */
+let profileId=null,profileEdit=false,editPhoto=null;
+function viewProfile(id){closeModal();profileId=id||me().id;profileEdit=false;go('profile')}
+function reviewsOf(id){return db.apps.filter(a=>a.userId===id&&a.review).map(a=>({...a.review,job:jobById(a.jobId)})).sort((a,b)=>new Date(b.at)-new Date(a.at))}
+function completeness(u){
+ const f=u.role==='freelancer'
+  ?[['รูปโปรไฟล์',u.photo],['ตำแหน่ง/อาชีพ',u.title],['จังหวัด',u.province],['เบอร์โทร',u.phone],['แนะนำตัว',u.bio],['ทักษะอย่างน้อย 3 อย่าง',(u.skills||[]).length>=3],['ประสบการณ์',(u.experience||[]).length],['การศึกษา',u.education],['ลิงก์ผลงาน',(u.links||[]).length],['เรทค่าจ้าง',u.rate]]
+  :[['โลโก้/รูปโปรไฟล์',u.photo],['ประเภทธุรกิจ',u.industry],['จังหวัด',u.province],['เบอร์โทร',u.phone],['เกี่ยวกับธุรกิจ',u.bio],['เว็บไซต์',u.website]];
+ return{pct:Math.round(f.filter(x=>x[1]).length/f.length*100),missing:f.filter(x=>!x[1]).map(x=>x[0])};
+}
+function renderProfile(){
+ if(!profileId)profileId=me().id;
+ const u=userById(profileId),own=u.id===me().id,fl=u.role==='freelancer';
+ if(profileEdit&&own)return renderProfileEdit(u);
+ const revs=fl?reviewsOf(u.id):[],avg=revs.length?revs.reduce((s,r)=>s+r.rating,0)/revs.length:0;
+ let stats;
+ if(fl){const done=db.apps.filter(a=>a.userId===u.id&&a.status==='completed');stats=[['งานที่สำเร็จ',done.length],['คะแนนรีวิว',revs.length?avg.toFixed(1)+' ★':'-'],['รายได้ผ่าน FoundWork',money(done.reduce((s,a)=>s+a.price,0))]]}
+ else{const js=db.jobs.filter(j=>j.employerId===u.id),ids=js.map(j=>j.id);stats=[['ประกาศงาน',js.length],['จ้างงานแล้ว',db.apps.filter(a=>ids.includes(a.jobId)&&['accepted','submitted','completed'].includes(a.status)).length],['สมาชิกตั้งแต่',u.joined?new Date(u.joined).toLocaleDateString('th-TH',{month:'short',year:'numeric'}):'-']]}
+ const cp=completeness(u),hidden='<span class="muted">แสดงเมื่อตกลงจ้างงาน (PDPA)</span>';
+ let gap='';
+ if(own&&fl){const freq={};db.jobs.filter(j=>j.status==='open').forEach(j=>j.tags.forEach(t=>freq[t]=(freq[t]||0)+1));
+  const mine=(u.skills||[]).map(s=>s.toLowerCase());
+  const g=Object.entries(freq).filter(([t])=>!mine.includes(t.toLowerCase())).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  gap=`<div class="ai-box" style="display:block;margin:12px 0 0"><b>✨ AI แนะนำทักษะที่ตลาดต้องการ</b><div class="tags" style="margin-top:8px">${g.map(([t,n])=>`<span class="tag">${esc(t)} · ${n} งาน</span>`).join('')}</div></div>`}
+ $('#profileRoot').innerHTML=`
+ <div class="card prof-card">
+  <div class="prof-cover"></div>
+  <div class="prof-main">
+   <div class="pa">${av(u,110)}</div>
+   <div class="pinfo"><h2>${esc(u.name)}</h2>
+    <div class="muted">${esc(fl?(u.title||'ฟรีแลนซ์'):(u.industry?CAT_ICON[u.industry]+' '+u.industry:'ผู้ว่าจ้าง'))} · 📍 ${esc(u.province||'ไม่ระบุจังหวัด')}${u.province?' ('+REGION_OF[u.province]+')':''}</div>
+    <div class="badges" style="margin-top:6px">${fl&&u.availability?`<span class="badge type">🕒 ${esc(u.availability)}</span>`:''}${fl&&u.rate?`<span class="badge starter">เรทเริ่มต้น ${money(u.rate)}/ชม.</span>`:''}${!fl&&u.size?`<span class="badge type">👥 ${esc(u.size)}</span>`:''}${revs.length?`<span class="badge near">★ ${avg.toFixed(1)} จาก ${revs.length} รีวิว</span>`:''}</div>
+   </div>
+   <div class="actions">${own?`<button class="btn btn-primary" onclick="profileEdit=true;renderProfile()">✏️ แก้ไขโปรไฟล์</button>`:`<button class="btn btn-primary" onclick="openChat('${u.id}')">💬 ส่งข้อความ</button>`}</div>
+  </div>
+  <div class="prof-stats">${stats.map(([l,v])=>`<div><b>${v}</b>${l}</div>`).join('')}</div>
+ </div>
+ <div class="prof-grid">
+  <div>
+   <div class="card sec"><h4>${fl?'เกี่ยวกับฉัน':'เกี่ยวกับธุรกิจ'}</h4><p style="white-space:pre-wrap">${u.bio?esc(u.bio):'<span class="muted">ยังไม่ได้เขียนแนะนำตัว</span>'}</p></div>
+   ${fl?`
+   <div class="card sec"><h4>ทักษะ</h4><div class="tags">${(u.skills||[]).map(t=>`<span class="tag hit">${esc(t)}</span>`).join('')||'<span class="muted">ยังไม่ได้ระบุทักษะ</span>'}</div>${gap}</div>
+   <div class="card sec"><h4>ประสบการณ์ทำงาน</h4>${(u.experience||[]).map(e=>`<div class="exp"><b>${esc(e.role)}</b><div>${esc(e.org)}</div><div class="muted">${esc(e.period)}</div></div>`).join('')||'<span class="muted">ยังไม่ได้เพิ่มประสบการณ์</span>'}</div>
+   <div class="card sec"><h4>รีวิวจากผู้ว่าจ้าง (${revs.length})</h4>${revs.map(r=>`<div class="review"><span class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span> <b style="color:var(--navy)">${esc(r.job?.title||'')}</b><div>"${esc(r.comment)}"</div><div class="muted">${esc(userById(r.by).name)} · ${timeAgo(r.at)}</div></div>`).join('')||'<span class="muted">ยังไม่มีรีวิว ทำงานแรกให้สำเร็จเพื่อรับรีวิว</span>'}</div>`
+   :`<div class="card sec"><h4>ประกาศงานที่เปิดรับ</h4>${db.jobs.filter(j=>j.employerId===u.id&&j.status==='open').map(j=>`<div class="info-row"><span>${CAT_ICON[j.category]||''} ${esc(j.title)}<br><small>${locLabel(j.location)} · ${money(j.min)} – ${money(j.max)} ${j.unit}</small></span><span><button class="btn btn-sm btn-outline" onclick="openDetail('${j.id}')">ดูงาน</button></span></div>`).join('')||'<span class="muted">ยังไม่มีประกาศที่เปิดรับ</span>'}</div>`}
+  </div>
+  <div>
+   ${own?`<div class="card sec"><h4>ความสมบูรณ์ของโปรไฟล์ ${cp.pct}%</h4><div class="progress"><i style="width:${cp.pct}%"></i></div>${cp.missing.length?`<div class="muted" style="margin-bottom:6px">ยังขาด:</div><div class="tags">${cp.missing.map(m=>`<span class="tag">${m}</span>`).join('')}</div><button class="btn btn-sm btn-outline" style="margin-top:12px" onclick="profileEdit=true;renderProfile()">เติมข้อมูลให้ครบ</button>`:'<div class="muted">🎉 โปรไฟล์ครบถ้วนแล้ว</div>'}</div>`:''}
+   <div class="card sec"><h4>ข้อมูลติดต่อ</h4>
+    <div class="info-row"><span>อีเมล</span><span>${own?esc(u.email):hidden}</span></div>
+    <div class="info-row"><span>โทรศัพท์</span><span>${own?esc(u.phone||'-'):hidden}</span></div>
+    <div class="info-row"><span>จังหวัด</span><span>${esc(u.province||'-')}</span></div>
+    ${fl?`<div class="info-row"><span>การศึกษา</span><span>${esc(u.education||'-')}</span></div><div class="info-row"><span>ภาษา</span><span>${esc(u.languages||'-')}</span></div>`
+     :`<div class="info-row"><span>เว็บไซต์</span><span>${u.website?`<a href="${esc(u.website)}" target="_blank">${esc(u.website)}</a>`:'-'}</span></div>`}
+   </div>
+   ${fl?`<div class="card sec"><h4>ผลงาน / พอร์ตโฟลิโอ</h4>${(u.links||[]).map(l=>`<div class="info-row"><span>🔗</span><span><a href="${esc(l)}" target="_blank">${esc(l)}</a></span></div>`).join('')||'<span class="muted">ยังไม่มีลิงก์ผลงาน</span>'}</div>`:''}
+  </div>
+ </div>`;
+}
+function expRow(e={}){return `<div class="exp-row"><input class="xr" placeholder="ตำแหน่ง" value="${esc(e.role)}"><input class="xo" placeholder="บริษัท / ลูกค้า" value="${esc(e.org)}"><input class="xp" placeholder="ช่วงเวลา เช่น 2565 - 2567" value="${esc(e.period)}"><button type="button" class="btn btn-sm btn-red" onclick="this.parentElement.remove()">ลบ</button></div>`}
+function renderProfileEdit(u){
+ editPhoto=u.photo||null;
+ const fl=u.role==='freelancer',popular=[...new Set(db.jobs.flatMap(j=>j.tags))].slice(0,30);
+ $('#profileRoot').innerHTML=`<form class="card sec" id="profForm">
+  <div class="page-head" style="margin-bottom:10px"><h2>แก้ไขโปรไฟล์</h2><div class="actions"><button type="button" class="btn btn-ghost" onclick="profileEdit=false;renderProfile()">ยกเลิก</button><button class="btn btn-primary" type="submit">บันทึก</button></div></div>
+  <div class="photo-edit"><div id="photoPrev">${av(u,90)}</div><div>
+   <label class="btn btn-outline btn-sm" style="margin:0;display:inline-flex">อัปโหลดรูป<input type="file" accept="image/*" hidden onchange="pickPhoto(this)"></label>
+   <button type="button" class="btn btn-ghost btn-sm" onclick="removePhoto()">ลบรูป</button><div class="muted">JPG / PNG ระบบจะย่อขนาดให้อัตโนมัติ</div></div></div>
+  <div class="row"><div class="field"><label>${fl?'ชื่อ-นามสกุล':'ชื่อธุรกิจ'} *</label><input id="eName" value="${esc(u.name)}" required></div>
+   <div class="field"><label>${fl?'ตำแหน่ง / อาชีพ':'ประเภทธุรกิจ'}</label>${fl?`<input id="eTitle" value="${esc(u.title)}" placeholder="เช่น นักออกแบบกราฟิก">`:`<select id="eIndustry">${catOptions(u.industry,'เลือกประเภทธุรกิจ')}</select>`}</div></div>
+  <div class="row3"><div class="field"><label>จังหวัด</label><select id="eProv">${provOptions(u.province)}</select></div>
+   <div class="field"><label>เบอร์โทร</label><input id="ePhone" value="${esc(u.phone)}" placeholder="08x-xxx-xxxx"></div>
+   <div class="field"><label>อีเมล</label><input value="${esc(u.email)}" disabled></div></div>
+  ${fl?`<div class="row"><div class="field"><label>เรทค่าจ้างเริ่มต้น (บาท/ชั่วโมง)</label><input type="number" id="eRate" min="0" value="${u.rate||''}"></div>
+   <div class="field"><label>ช่วงเวลาที่รับงาน</label><select id="eAvail">${AVAIL.map(a=>`<option ${a===u.availability?'selected':''}>${a}</option>`).join('')}</select></div></div>`
+  :`<div class="row"><div class="field"><label>เว็บไซต์</label><input id="eWeb" value="${esc(u.website)}" placeholder="https://"></div>
+   <div class="field"><label>ขนาดธุรกิจ</label><select id="eSize">${['1-10 คน','11-50 คน','51-200 คน','200 คนขึ้นไป'].map(s=>`<option ${s===u.size?'selected':''}>${s}</option>`).join('')}</select></div></div>`}
+  <div class="field"><label>${fl?'แนะนำตัว':'เกี่ยวกับธุรกิจ'}</label><textarea id="eBio">${esc(u.bio)}</textarea></div>
+  ${fl?`<div class="field"><label>ทักษะ (คั่นด้วย ,)</label><input id="eSkills" value="${esc((u.skills||[]).join(', '))}"><div class="muted" style="margin-top:6px">คลิกเพื่อเพิ่มทักษะยอดนิยม:</div><div class="sug">${popular.map(t=>`<button type="button" onclick="addSkill(this.textContent)">${esc(t)}</button>`).join('')}</div></div>
+  <div class="field"><label>ประสบการณ์ทำงาน</label><div id="expRows">${(u.experience||[]).map(expRow).join('')}</div><button type="button" class="btn btn-sm btn-outline" onclick="$('#expRows').insertAdjacentHTML('beforeend',expRow())">+ เพิ่มประสบการณ์</button></div>
+  <div class="row"><div class="field"><label>การศึกษา</label><input id="eEdu" value="${esc(u.education)}" placeholder="เช่น ปริญญาตรี บริหารธุรกิจ"></div><div class="field"><label>ภาษา</label><input id="eLang" value="${esc(u.languages)}" placeholder="เช่น ไทย, อังกฤษ"></div></div>
+  <div class="field"><label>ลิงก์ผลงาน / พอร์ตโฟลิโอ (บรรทัดละ 1 ลิงก์)</label><textarea id="eLinks" style="min-height:70px">${esc((u.links||[]).join('\n'))}</textarea></div>`:''}
+ </form>`;
+ $('#profForm').onsubmit=saveProfile;
+}
+function addSkill(t){const i=$('#eSkills'),arr=i.value.split(',').map(s=>s.trim()).filter(Boolean);if(!arr.includes(t))arr.push(t);i.value=arr.join(', ')}
+function removePhoto(){editPhoto=null;$('#photoPrev').innerHTML=av({name:$('#eName').value},90)}
+function pickPhoto(inp){
+ const f=inp.files[0];if(!f)return;const r=new FileReader();
+ r.onload=()=>{const img=new Image();img.onload=()=>{const s=200,c=document.createElement('canvas');c.width=c.height=s;const k=Math.min(img.width,img.height);
+  c.getContext('2d').drawImage(img,(img.width-k)/2,(img.height-k)/2,k,k,0,0,s,s);editPhoto=c.toDataURL('image/jpeg',.82);
+  $('#photoPrev').innerHTML=`<img class="avatar" src="${editPhoto}" style="width:90px;height:90px;object-fit:cover">`};img.src=r.result};
+ r.readAsDataURL(f);
+}
+function saveProfile(e){
+ e.preventDefault();
+ const u=db.users.find(x=>x.id===me().id),fl=u.role==='freelancer';
+ u.name=$('#eName').value.trim()||u.name;u.photo=editPhoto;u.province=$('#eProv').value;u.phone=$('#ePhone').value.trim();u.bio=$('#eBio').value.trim();
+ if(fl){
+  u.title=$('#eTitle').value.trim();u.rate=+$('#eRate').value||0;u.availability=$('#eAvail').value;
+  u.skills=$('#eSkills').value.split(',').map(s=>s.trim()).filter(Boolean);
+  u.experience=[...document.querySelectorAll('#expRows .exp-row')].map(r=>({role:r.querySelector('.xr').value.trim(),org:r.querySelector('.xo').value.trim(),period:r.querySelector('.xp').value.trim()})).filter(x=>x.role||x.org);
+  u.education=$('#eEdu').value.trim();u.languages=$('#eLang').value.trim();
+  u.links=$('#eLinks').value.split('\n').map(s=>s.trim()).filter(Boolean);
+ }else{
+  u.industry=$('#eIndustry').value;u.website=$('#eWeb').value.trim();u.size=$('#eSize').value;
+  db.jobs.forEach(j=>{if(j.employerId===u.id)j.company=u.name});
+ }
+ try{save()}catch(err){return toast('รูปมีขนาดใหญ่เกินไป กรุณาเลือกรูปอื่น')}
+ profileEdit=false;renderHeaderUser();toast('บันทึกโปรไฟล์เรียบร้อย');renderProfile();
+}
+
+/* ================= START ================= */
+$('#rProv').innerHTML=provOptions('กรุงเทพมหานคร');
+save();init();
+</script>
+</body>
+</html>
